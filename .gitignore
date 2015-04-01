@@ -23,3 +23,5 @@
 ### Windows ignores ###
 Thumbs.db
 ehthumbs.db
+*.komodoproject
+/.komodotools/*
