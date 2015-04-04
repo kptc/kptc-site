@@ -1,0 +1,24 @@
+<div class="row">
+  <div class=col-xs-12>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @players.each do |player| %>
+          <tr>
+            <td><%= player.first_name + ' ' + player.last_name %></td>
+            <td><%= player.email %></td>
+            <td><%= player.phone %></td>
+            <td><%= player.role %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

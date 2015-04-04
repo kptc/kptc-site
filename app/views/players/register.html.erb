@@ -1,0 +1,32 @@
+<%= form_for @player do |f| %>
+  <div class="form-group">
+    <%= f.label :first_name, 'First Name' %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name, 'Last Name' %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone %>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <%= f.label :gender_id %>
+        <%= f.collection_select :gender_id, @genders, :code, :name,
+          {include_blank: '--'},
+          {class: 'form-control'}
+        %>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <%= f.button 'Register', {:type => 'submit', :class => 'btn btn-primary pull-right'} %>
+    </div>
+  </div>
+<% end %>

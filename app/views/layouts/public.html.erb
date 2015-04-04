@@ -1,0 +1,11 @@
+<%= content_for :public_layout do %>
+
+  <div class="row">
+    <div class="col-xs-24 col-sm-offset-6 col-sm-12 col-md-offset-8 col-md-8">
+      <%= yield %>
+    </div>
+  </div>
+
+<% end %>
+
+<%= render template: "layouts/application" %>

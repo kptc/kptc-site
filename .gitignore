@@ -15,6 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
+/app/assets/stylesheets/.sass-cache/*
 
 ### Mac ignores ###
 *.DS_Store
