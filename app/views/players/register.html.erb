@@ -1,24 +1,28 @@
 <%= form_for @player do |f| %>
   <div class="form-group">
-    <%= f.label :first_name, 'First Name' %>
+    <%= f.label :first_name, 'First Name', class: 'control-label' %>
     <%= f.text_field :first_name, class: 'form-control' %>
+    <%= show_errors(@player, :first_name) %>
   </div>
   <div class="form-group">
-    <%= f.label :last_name, 'Last Name' %>
+    <%= f.label :last_name, 'Last Name', class: 'control-label' %>
     <%= f.text_field :last_name, class: 'form-control' %>
+    <%= show_errors(@player, :last_name) %>
   </div>
   <div class="form-group">
-    <%= f.label :email %>
+    <%= f.label :email, class: 'control-label' %>
     <%= f.email_field :email, class: 'form-control' %>
+    <%= show_errors(@player, :email) %>
   </div>
   <div class="form-group">
-    <%= f.label :phone %>
+    <%= f.label :phone, class: 'control-label' %>
     <%= f.text_field :phone, class: 'form-control' %>
+    <%= show_errors(@player, :phone) %>
   </div>
   <div class="row">
     <div class="col-xs-12">
       <div class="form-group">
-        <%= f.label :gender_id %>
+        <%= f.label :gender_id, class: 'control-label' %>
         <%= f.collection_select :gender_id, @genders, :code, :name,
           {include_blank: '--'},
           {class: 'form-control'}
