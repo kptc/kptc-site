@@ -18,6 +18,8 @@ class PlayersController < ApplicationController
     
     if @player.save
       flash[:notice] = {:class => 'success', :body => 'You have been registered!'}
+      PlayerMailer.registration_email(@player).deliver_now
+      # send emails (player and admin)
       redirect_to '/'
     else
       @genders = Gender.all
