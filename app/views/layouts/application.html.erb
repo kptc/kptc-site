@@ -50,8 +50,8 @@
     </header>
     
     <% if flash[:notice] %>
-      <div class="alert alert-<%= flash[:notice][:class].to_s %>">
-        <%= flash[:notice][:body].to_s %>
+      <div class="alert alert-<%= flash[:notice][:class] %>">
+        <%= flash[:notice][:body] %>
       </div>
     <% end %>
     <%= content_for?(:public_layout) ? yield(:public_layout) : yield %>

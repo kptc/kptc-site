@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  devise_for :players
+  root to: 'players#index'
+  
   get 'players/register' => 'players#register'
   resources :players
 
