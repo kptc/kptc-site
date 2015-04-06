@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   
-  devise_for :players
-  root to: 'players#index'
-  
   get 'players/register' => 'players#register'
   resources :players
+  resources :sessions
+  
+  devise_for :players
+  root to: 'players#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

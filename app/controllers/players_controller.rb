@@ -1,5 +1,7 @@
 class PlayersController < ApplicationController
   
+  before_action :authenticate_player!, except: [:new]
+  
   layout 'public', only: 'register'
   
   def index

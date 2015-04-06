@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404204518) do
+ActiveRecord::Schema.define(version: 20150406015121) do
 
   create_table "genders", force: :cascade do |t|
     t.string   "code"
@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 20150404204518) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.integer  "session_type_id"
+    t.integer  "gender_id"
+    t.string   "name"
+    t.string   "day_of_week"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
