@@ -6,7 +6,10 @@ class Session < ActiveRecord::Base
   def name
     gender = Gender.find(gender_id)
     session_type = SessionType.find(session_type_id)
-    [Date::DAYNAMES[day_of_week.to_i], get_time_of_day(time_of_day), get_possessive(gender.name), session_type.name].join(' ')
+    [Date::DAYNAMES[day_of_week.to_i],
+      get_time_of_day(time_of_day),
+      get_possessive(gender.name),
+      session_type.name].join(' ')
   end
   
   def get_time_of_day(time_of_day_id)

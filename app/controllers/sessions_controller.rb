@@ -45,11 +45,24 @@ class SessionsController < ApplicationController
     end
   end
 
-private
-
   def destroy
+    @session = Session.find(params[:id])
+    if @session.destroy
+      flash[:notice] = {
+        :class => 'success',
+        :body => 'Session has been deleted'
+      }
+    else
+      flash[:notice] = {
+        :class => 'danger',
+        :body => 'Session could not be deleted, please try again'
+      }
+    end
+    redirect_to '/sessions'
   end
   
+private
+
   def form
     @times = {
      'N' => 'Night',
