@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   
-  before_action :authenticate_player!, except: [:new]
+  before_action :authenticate_player!, except: [:register]
   
   layout 'public', only: 'register'
   

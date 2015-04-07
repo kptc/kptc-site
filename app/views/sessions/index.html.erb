@@ -1,34 +1,50 @@
 <div class="row">
   <div class=col-xs-24>
-    <div class="row">
-      <div class="col-xs-12">
-        <h1>Sessions</h1>
+    
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Sessions</h1>
+        </div>
+        <div class="col-xs-12">
+          <%= link_to 'Add Session', new_session_path, class: 'btn btn-primary pull-right' %>
+        </div>
       </div>
-      <div class="col-xs-12">
-        <%= link_to 'Add Session', new_session_path, class: 'btn btn-primary pull-right' %>
-      </div>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Session</th>
-          <th>Type</th>
-          <th>Starts</th>
-          <th>Ends</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @sessions.each do |session| %>
+    
+    <% if not @sessions.blank? %>
+        
+      <table class="table table-responsive">
+        <thead>
           <tr>
-            <td><%= session.name %></td>
-            <td><%= session.session_type.name %></td>
-            <td><%= session.start_date.strftime("%B #{session.start_date.day.ordinalize}, %Y") %></td>
-            <td><%= session.end_date.strftime("%B #{session.end_date.day.ordinalize}, %Y") %></td>
-            <td><%= session.start_time.strftime("%I:%M %p") %></td>
+            <th width="40%">Session</th>
+            <th>Starts</th>
+            <th>Ends</th>
+            <th>Time</th>
+            <th class="actions">
+              Actions
+            </th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @sessions.each do |session| %>
+            <tr>
+              <td><%= session.name %></td>
+              <td><%= session.start_date.strftime("%B #{session.start_date.day.ordinalize}, %Y") %></td>
+              <td><%= session.end_date.strftime("%B #{session.end_date.day.ordinalize}, %Y") %></td>
+              <td><%= session.start_time.strftime("%I:%M %p") %></td>
+              <td>
+                <%= link_to 'Edit', edit_session_path(session) %>
+                <%= link_to 'Delete', session_path(session), method: :delete %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    
+    <% else %>
+    
+      <p>No sessions available</p>
+    
+    <% end %>
+    
   </div>
 </div>

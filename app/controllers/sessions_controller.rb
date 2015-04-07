@@ -8,27 +8,12 @@ class SessionsController < ApplicationController
   end
   
   def new
+    @session = Session.new
     form
   end
 
   def create
-    gendered = {1 => "Women's", 2 => "Men's"}
-    @genders = Gender.all
-    @session_types = SessionType.select(:id, :name).to_json
-    @days = {
-      1 => 'Monday',
-      2 => 'Tuesday',
-      3 => 'Wednesday',
-      4 => 'Thursday',
-      5 => 'Friday',
-      6 => 'Saturday',
-      7 => 'Sunday'
-    }
     @session = Session.new(post_params)
-    @session.name =
-      @days[post_params[:day_of_week].to_i] + ' Night ' +
-      gendered[post_params[:gender_id].to_i] + ' ' +
-      @session_types[post_params[:session_type_id].to_i]
     if @session.save
       flash[:notice] = {
         :class => 'success',
@@ -47,10 +32,17 @@ class SessionsController < ApplicationController
   end
 
   def edit
+    @session = Session.find(params[:id])
     form
   end
 
   def update
+    @session = Session.find(params[:id])
+    if @session.update(post_params)
+      redirect_to '/sessions'
+    else
+      render 'edit'
+    end
   end
 
 private
@@ -59,15 +51,9 @@ private
   end
   
   def form
-    @session = Session.new
-    @days = {
-      1 => 'Monday',
-      2 => 'Tuesday',
-      3 => 'Wednesday',
-      4 => 'Thursday',
-      5 => 'Friday',
-      6 => 'Saturday',
-      7 => 'Sunday'
+    @times = {
+     'N' => 'Night',
+     'D' => 'Day'
     }
     @genders = Gender.select(:id, :name)
     @session_types = SessionType.select(:id, :name)
@@ -77,6 +63,7 @@ private
   def post_params
     params.require(:session).permit(
       :day_of_week,
+      :time_of_day,
       :start_date,
       :end_date,
       :start_time,
