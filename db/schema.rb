@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327013359) do
+ActiveRecord::Schema.define(version: 20150406015121) do
+
+  create_table "genders", force: :cascade do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "players", force: :cascade do |t|
     t.string   "first_name"
@@ -19,8 +26,41 @@ ActiveRecord::Schema.define(version: 20150327013359) do
     t.string   "email"
     t.string   "phone"
     t.string   "role"
+    t.integer  "gender_id"
+    t.string   "encrypted_password",     default: ""
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "players", ["email"], name: "index_players_on_email", unique: true
+  add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
+
+  create_table "session_types", force: :cascade do |t|
+    t.string   "code"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.integer  "session_type_id"
+    t.integer  "gender_id"
+    t.string   "name"
+    t.string   "day_of_week"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
