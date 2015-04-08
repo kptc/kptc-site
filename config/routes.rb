@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  devise_for :players
+  devise_for :players, :controllers => {
+    registrations: 'registrations'
+  }
   get 'players/register' => 'players#register'
   resources :players
   resources :sessions
