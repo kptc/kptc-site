@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20150407035743) do
     t.string   "email"
     t.string   "phone"
     t.string   "role"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "gender_id"
     t.string   "encrypted_password",     default: ""
     t.string   "reset_password_token"
@@ -36,8 +38,6 @@ ActiveRecord::Schema.define(version: 20150407035743) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "players", ["email"], name: "index_players_on_email", unique: true

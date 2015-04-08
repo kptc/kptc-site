@@ -15,3 +15,4 @@
 //= require jquery.datetimepicker
 //= require turbolinks
 //= require_tree ./bootstrap/
+//= require script
