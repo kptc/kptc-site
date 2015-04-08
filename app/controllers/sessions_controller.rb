@@ -80,6 +80,7 @@ private
       :start_date,
       :end_date,
       :start_time,
+      :end_time,
       :gender_id,
       :session_type_id
     )
