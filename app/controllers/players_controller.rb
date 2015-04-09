@@ -1,12 +1,52 @@
 class PlayersController < ApplicationController
   
-  before_action :authenticate_player!
+  #before_action :authenticate_player!
   
   def index
     @players = Player.all
   end
 
   def show
+  end
+  
+  def toggle_activate
+    player = Player.find(params[:id])
+    player_role = player.role
+    
+    case player_role
+    when 'I'
+      new_role = 'U'
+    when 'U', 'A'
+      new_role = 'I'
+    end
+    
+    if player.update_attribute :role, new_role
+      redirect_to '/players'
+    else
+      render 'index'
+    end
+  end
+  
+  def toggle_admin
+    player = Player.find(params[:id])
+    player_role = player.role
+    
+    case player_role
+    when 'A'
+      new_role = 'U'
+    when 'U'
+      new_role = 'A'
+    else
+      new_role = 'I'
+    end
+    
+    if player.update_attribute :role, new_role
+      redirect_to '/players'
+    else
+      render 'index'
+    end
+  
+    
   end
 
   #def create

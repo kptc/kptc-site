@@ -7,6 +7,7 @@
           <th>Email</th>
           <th>Phone</th>
           <th>Role</th>
+          <th colspan="2"></th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +17,20 @@
             <td><%= player.email %></td>
             <td><%= player.phone %></td>
             <td><%= player.role %></td>
+            <%
+              if player.role == 'I'
+                active_toggle_name = 'Activate'
+                admin_toggle_href = '#'
+              else
+                active_toggle_name = 'Deactivate'
+                admin_toggle_href = player_admin_path(player)
+              end
+            %>
+            <td>
+              <% admin_toggle_name = (player.role == 'A') ? 'Limit to User' : 'Make Admin' %>
+              <%= link_to active_toggle_name, player_activate_path(player), method: 'put' %>
+              <%= link_to admin_toggle_name, admin_toggle_href, method: 'put' %>
+            </td>
           </tr>
         <% end %>
       </tbody>
