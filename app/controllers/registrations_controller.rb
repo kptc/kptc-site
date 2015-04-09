@@ -19,7 +19,8 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
       :phone,
       :gender_id,
-      :password,
+      :role,
+      :encrypted_password,
       :password_confirmation
     )
   end
@@ -31,7 +32,8 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
       :phone,
       :gender_id,
-      :password,
+      :role,
+      :encrypted_password,
       :password_confirmation,
       :current_password
     )
