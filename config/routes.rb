@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   root to: 'players#index'
   
   get 'players', to: 'players#index'
-  put 'player/:id', to: 'players#toggle_admin', as: 'player_admin'
-  put 'player/:id', to: 'players#toggle_activate', as: 'player_activate'
+  put 'player/:id/admin', to: 'players#toggle_admin', as: 'player_admin'
+  put 'player/:id/activate', to: 'players#toggle_activate', as: 'player_activate'
   get 'player/:id', to: 'players#show', as: 'player'
 
   resources :sessions

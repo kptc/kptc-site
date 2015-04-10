@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   
-  #before_action :authenticate_player!
+  before_action :authenticate_player!
   
   def index
     @players = Player.all
@@ -14,10 +14,10 @@ class PlayersController < ApplicationController
     player_role = player.role
     
     case player_role
-    when 'I'
+    when 'L'
       new_role = 'U'
     when 'U', 'A'
-      new_role = 'I'
+      new_role = 'L'
     end
     
     if player.update_attribute :role, new_role
@@ -37,7 +37,7 @@ class PlayersController < ApplicationController
     when 'U'
       new_role = 'A'
     else
-      new_role = 'I'
+      new_role = 'L'
     end
     
     if player.update_attribute :role, new_role

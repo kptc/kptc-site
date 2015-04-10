@@ -12,12 +12,10 @@ class RegistrationsController < Devise::RegistrationsController
   
   def create
     
+    build_resource(sign_up_params)
     @player = resource
-    @player.build(sign_up_params)
-    @player.role = 'U'
-    #build_resource(sign_up_params)
-
-    #resource_saved = resource.save
+    @player.role = 'L'
+  
     resource_saved = @player.save
     yield resource if block_given?
     if resource_saved
@@ -39,7 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
-
+  
   private
 
   def sign_up_params
@@ -50,7 +48,7 @@ class RegistrationsController < Devise::RegistrationsController
       :phone,
       :gender_id,
       :role,
-      :encrypted_password,
+      :password,
       :password_confirmation
     )
   end
@@ -63,8 +61,7 @@ class RegistrationsController < Devise::RegistrationsController
       :phone,
       :gender_id,
       :role,
-      :encrypted_password,
-      :password_confirmation,
+      :password,
       :current_password
     )
   end
