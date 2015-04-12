@@ -1,17 +1,17 @@
 <h1>Log In</h1>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: player_session_path) do |f| %>
   
   <div class="form-group">
     <%= f.label :email, class: 'control-label' %>
     <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-    <%= show_errors(@player, :email) %>
+    <%= show_errors(resource, :email) %>
   </div>
   
   <div class="form-group">
     <%= f.label :password, class: 'control-label' %>
     <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-    <%= show_errors(@player, :password) %>
+    <%= show_errors(resource, :password) %>
   </div>
 
   <% if devise_mapping.rememberable? -%>

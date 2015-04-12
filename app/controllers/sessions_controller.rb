@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   
+  before_action :authenticate_player!
+  
   def index
     @sessions = Session.includes(:gender, :session_type)
   end

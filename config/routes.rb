@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
   
+  get 'home/index'
+
   devise_for :players,
     controllers: {
       registrations: 'registrations'
     }
   
-  root to: 'players#index'
+  root to: 'home#index'
+  get 'home', to: 'home#index'
   
   get 'players', to: 'players#index'
   put 'player/:id/admin', to: 'players#toggle_admin', as: 'player_admin'
   put 'player/:id/activate', to: 'players#toggle_activate', as: 'player_activate'
   get 'player/:id', to: 'players#show', as: 'player'
-
+  
   resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.

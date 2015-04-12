@@ -11,11 +11,21 @@ class ApplicationController < ActionController::Base
   protected
   
   def layout_by_resource
-    if devise_controller? && resource_name == :player && ['new', 'create'].include?(action_name)
+    if home_controller? && action_name == 'index' || (devise_controller? && resource_name == :player && ['new', 'create'].include?(action_name))
       'public'
     else
       'application'
     end
+  end
+  
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) ||
+      players_path
+      #if resource.is_a?(User) && resource.can_publish?
+      #  publisher_url
+      #else
+      #  super
+      #end
   end
   
   def configure_permitted_parameters
@@ -31,7 +41,10 @@ class ApplicationController < ActionController::Base
       :current_password
     ) }
     
-
+  end
+  
+  def home_controller?
+    is_a?(HomeController)
   end
   
 end
