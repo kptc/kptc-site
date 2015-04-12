@@ -13,4 +13,8 @@ class Player < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
   
+  def admin?
+    self.role == 'A'
+  end
+  
 end

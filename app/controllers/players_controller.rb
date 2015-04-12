@@ -4,6 +4,7 @@ class PlayersController < ApplicationController
   
   def index
     @players = Player.all
+    @roles = Role.all
   end
 
   def show

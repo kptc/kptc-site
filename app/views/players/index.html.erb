@@ -16,7 +16,7 @@
             <td><%= player.full_name %></td>
             <td><%= player.email %></td>
             <td><%= player.phone %></td>
-            <td><%= player.role %></td>
+            <td><%= @roles[player.role] %></td>
             <%
               if player.role == 'L'
                 active_toggle_name = 'Activate'
