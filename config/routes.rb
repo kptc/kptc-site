@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'players', to: 'players#index'
   put 'player/:id/admin', to: 'players#toggle_admin', as: 'player_admin'
   put 'player/:id/activate', to: 'players#toggle_activate', as: 'player_activate'
-  get 'player/:id', to: 'players#show', as: 'player'
+  get 'player/:id/profile', to: 'players#show', as: 'player'
   
   resources :sessions
 

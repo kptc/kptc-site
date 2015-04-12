@@ -8,6 +8,7 @@ class PlayersController < ApplicationController
   end
 
   def show
+    @player = Player.includes(:sessions).find(params[:id])
   end
   
   def toggle_activate

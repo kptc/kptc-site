@@ -13,7 +13,7 @@
       <tbody>
         <% @players.each do |player| %>
           <tr>
-            <td><%= player.full_name %></td>
+            <td><%= player.name %></td>
             <td><%= player.email %></td>
             <td><%= player.phone %></td>
             <td><%= @roles[player.role] %></td>

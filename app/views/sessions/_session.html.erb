@@ -1,0 +1,11 @@
+<tr>
+  <td>
+    <%= session.name %>
+  </td>
+  <td>
+    <%= session.start_date.strftime("%B #{session.start_date.day.ordinalize}, %Y") + ' to ' + session.end_date.strftime("%B #{session.end_date.day.ordinalize}, %Y") %>
+  </td>
+  <td>
+    D5
+  </td>
+</tr>

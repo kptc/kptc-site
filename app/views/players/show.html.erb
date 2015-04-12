@@ -1,0 +1,40 @@
+<div class="row">
+  <aside class="col-xs-24 col-sm-6 sidebar">
+    <h1><%= @player.name %></h1>
+    <div>
+      <p><%= @player.email %></p>
+      <p><%= @player.phone %></p>
+    </div>
+    <address>
+      
+    </address>
+  </aside>
+  
+  <div class="col-xs-24 col-sm-18">
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Current Sessions</h2>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Session</th>
+              <th>Dates</th>
+              <th>Standing</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @player.sessions.current %>
+          </tbody>
+        </table> <!-- panel -->
+      </div>
+    </div>
+    
+    <div class="calendar">
+      
+    </div>
+    
+  </div>
+</div>

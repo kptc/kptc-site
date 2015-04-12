@@ -30,7 +30,6 @@ class SessionsController < ApplicationController
       }
       render 'form'
     end
-    
   end
 
   def edit

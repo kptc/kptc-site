@@ -1,5 +1,7 @@
 class Session < ActiveRecord::Base
   
+  has_many :player_sessions
+  
   belongs_to :gender
   belongs_to :session_type
   
@@ -10,6 +12,14 @@ class Session < ActiveRecord::Base
       get_time_of_day(time_of_day),
       get_possessive(gender.name),
       session_type.name].join(' ')
+  end
+  
+  def self.current
+    where("? BETWEEN start_date AND end_date", Date.today)
+  end
+  
+  def self.past
+    where("? > start_date AND end_date", Date.today)
   end
   
   def get_time_of_day(time_of_day_id)
