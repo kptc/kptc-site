@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def show
+    @session = Session.includes(:session_dates).find(params[:id])
   end
   
   def new

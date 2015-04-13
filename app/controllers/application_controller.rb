@@ -22,9 +22,9 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) ||
       players_path
       if resource.is_a?(Player) && resource.admin?
-        publisher_url
+        players_path
       else
-        super
+        player_path
       end
   end
   

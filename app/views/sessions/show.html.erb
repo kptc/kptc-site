@@ -1,2 +1,31 @@
-<h1>Sessions#show</h1>
-<p>Find me in app/views/sessions/show.html.erb</p>
+<div class="row">
+  <div class="col-xs-24">
+    <h1>Session</h1>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-18">
+            <h3><%= @session.name %><small> &ndash; <%= @session.dates %></small></h3>
+          </div>
+          <div class="col-xs-6">
+            <%= link_to raw(fa_icon 'reply'), :back, class: 'btn-primary pull-right', title: 'Back' %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th class="actions"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @session.session_dates %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

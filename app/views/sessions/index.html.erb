@@ -6,7 +6,7 @@
           <h1>Sessions</h1>
         </div>
         <div class="col-xs-12">
-          <%= link_to raw(fa_icon 'plus', text: 'Add Session'), new_session_path, class: 'btn btn-primary pull-right' %>
+          <%= link_to raw(fa_icon 'plus', text: 'Add Session'), new_session_path, class: 'btn-primary pull-right' %>
         </div>
       </div>
     
@@ -32,8 +32,9 @@
               <td><%= session.end_date.strftime("%B #{session.end_date.day.ordinalize}, %Y") %></td>
               <td><%= session.start_time.strftime("%I:%M %p") %></td>
               <td>
-                <%= link_to 'Edit', edit_session_path(session) %>
-                <%= link_to 'Delete', session_path(session), method: :delete %>
+                <%= link_to raw(fa_icon 'share'), session_path(session), class: 'btn-primary', title: 'View' %>
+                <%= link_to raw(fa_icon 'pencil'), edit_session_path(session), class: 'btn-primary', title: 'Edit' %>
+                <%= link_to raw(fa_icon 'remove'), session_path(session), method: :delete, class: 'btn-primary', title: 'Delete' %>
               </td>
             </tr>
           <% end %>

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'home/index'
-
   devise_for :players,
     controllers: {
       registrations: 'registrations'
@@ -16,6 +14,7 @@ Rails.application.routes.draw do
   get 'player/:id/profile', to: 'players#show', as: 'player'
   
   resources :sessions
+  resources :session_dates
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

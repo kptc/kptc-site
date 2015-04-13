@@ -30,6 +30,7 @@ gem 'email_validator', :require => 'email_validator/strict'
 gem 'devise'
 
 gem 'font-awesome-rails'
+gem 'best_in_place', '~> 3.0.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

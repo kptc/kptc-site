@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
   
+  $('.best_in_place').best_in_place();
+  
   $('.datepicker').datetimepicker({
     format: 'Y-m-d',
     timepicker: false
@@ -13,4 +15,3 @@ $(document).ready(function() {
   });  
   
 });
-
