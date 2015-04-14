@@ -46,7 +46,7 @@ class RegistrationsController < Devise::RegistrationsController
       :last_name,
       :email,
       :phone,
-      :gender_id,
+      :gender,
       :role,
       :password,
       :password_confirmation
@@ -59,7 +59,7 @@ class RegistrationsController < Devise::RegistrationsController
       :last_name,
       :email,
       :phone,
-      :gender_id,
+      :gender,
       :role,
       :password,
       :current_password

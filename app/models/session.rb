@@ -3,7 +3,6 @@ class Session < ActiveRecord::Base
   has_many :player_sessions
   has_many :session_dates
   
-  belongs_to :gender
   belongs_to :session_type
   
   default_scope {
@@ -13,11 +12,11 @@ class Session < ActiveRecord::Base
   # VIRTUAL ATTRIBUTES
   
   def name
-    gender = Gender.find(gender_id)
+    genders = Gender.all
     session_type = SessionType.find(session_type_id)
     [Date::DAYNAMES[day_of_week.to_i],
       get_time_of_day(time_of_day),
-      get_possessive(gender.name),
+      get_possessive(genders[gender]),
       session_type.name].join(' ')
   end
   

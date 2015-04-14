@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   before_action :authenticate_player!
   
   def index
-    @sessions = Session.includes(:gender, :session_type)
+    @sessions = Session.includes(:session_type)
   end
 
   def show
@@ -83,7 +83,7 @@ private
       :end_date,
       :start_time,
       :end_time,
-      :gender_id,
+      :gender,
       :session_type_id
     )
   end

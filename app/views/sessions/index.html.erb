@@ -16,9 +16,7 @@
         <thead>
           <tr>
             <th width="40%">Session</th>
-            <th>Starts</th>
-            <th>Ends</th>
-            <th>Time</th>
+            <th>Dates</th>
             <th class="actions">
               Actions
             </th>
@@ -28,9 +26,7 @@
           <% @sessions.each do |session| %>
             <tr>
               <td><%= session.name %></td>
-              <td><%= session.start_date.strftime("%B #{session.start_date.day.ordinalize}, %Y") %></td>
-              <td><%= session.end_date.strftime("%B #{session.end_date.day.ordinalize}, %Y") %></td>
-              <td><%= session.start_time.strftime("%I:%M %p") %></td>
+              <td><%= session.dates + ' (' + session.session_dates.count.to_s + ' Matches)' %></td>
               <td>
                 <%= link_to raw(fa_icon 'share'), session_path(session), class: 'btn-primary', title: 'View' %>
                 <%= link_to raw(fa_icon 'pencil'), edit_session_path(session), class: 'btn-primary', title: 'Edit' %>

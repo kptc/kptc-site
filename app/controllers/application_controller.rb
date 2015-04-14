@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
       if resource.is_a?(Player) && resource.admin?
         players_path
       else
-        player_path
+        player_path(resource)
       end
   end
   
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
       :last_name,
       :email,
       :phone,
-      :gender_id,
+      :gender,
       :role,
       :password,
       :password_confirmation,

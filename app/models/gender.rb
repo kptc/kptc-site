@@ -1,5 +1,10 @@
-class Gender < ActiveRecord::Base
+class Gender
   
-  has_many :players
+  def self.all
+    {
+      'F' => 'Female',
+      'M' => 'Male'
+    }
+  end
   
 end
