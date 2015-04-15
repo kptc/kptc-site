@@ -9,7 +9,9 @@ class Session < ActiveRecord::Base
     order(start_date: :asc)
   }
   
-  # VIRTUAL ATTRIBUTES
+  # --- Validations ---
+  
+  # --- Virtual Attributes ---
   
   def name
     genders = Gender.all
@@ -24,7 +26,7 @@ class Session < ActiveRecord::Base
     start_date.strftime("%B #{start_date.day.ordinalize}, %Y") + ' to ' + end_date.strftime("%B #{end_date.day.ordinalize}, %Y")
   end
   
-  # SCOPES
+  # --- Scopes ---
   
   def self.current
     where("? BETWEEN start_date AND end_date", Date.today)

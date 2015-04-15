@@ -6,6 +6,17 @@
     <%= session.dates %>
   </td>
   <td>
-    D5
+    <% session.player_sessions.each do |p_s| %>
+      <%= p_s.ranking.rank %>
+    <% end %>
+  </td>
+</tr>
+<tr>
+  <td colspan="3">
+    <ul>
+      <% session.session_dates.each do |date| %>
+        <li><%= date.dt %></li>
+      <% end %>
+    </ul>
   </td>
 </tr>

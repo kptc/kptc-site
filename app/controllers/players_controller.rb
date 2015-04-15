@@ -8,7 +8,10 @@ class PlayersController < ApplicationController
   end
 
   def show
-    @player = Player.includes(:sessions).find(params[:id])
+    @player = Player.includes(
+      {sessions: [:session_dates, {player_sessions: :ranking}]}
+    ).find(params[:id])
+    
   end
   
   def toggle_activate

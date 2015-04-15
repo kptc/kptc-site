@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_id: 
+  session_id: 
+  rank_letter: MyString
+  rank_number: 1
+
+two:
+  player_id: 
+  session_id: 
+  rank_letter: MyString
+  rank_number: 1

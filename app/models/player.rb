@@ -5,15 +5,31 @@ class Player < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many :player_sessions
+  
   has_many :sessions, through: :player_sessions
   
-  validates :first_name, :last_name, :email, :phone, :gender, :presence => {message: "Required"}
-  validates :email, :uniqueness => {message: "Email Already Taken"}, :email => {message: "Invalid Email"}
+  # --- Validations ---
+  
+  validates :first_name, :last_name, :email, :phone, :gender, :presence => {
+    message: "Required"
+  }
+  
+  validates :email,
+    :uniqueness => {
+      message: "Email Already Taken"
+    },
+    :email => {
+      message: "Invalid Email"
+    }
+  
+  # --- Virtual Attributes ---
   
   def name
     [first_name, last_name].join(' ')
   end
   
+  # --- Scopes ----
+
   def admin?
     self.role == 'A'
   end
