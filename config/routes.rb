@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   put 'player/:id/admin', to: 'players#toggle_admin', as: 'player_admin'
   put 'player/:id/activate', to: 'players#toggle_activate', as: 'player_activate'
   get 'player/:id/profile', to: 'players#show', as: 'player'
+
+  get 'sessions/:id/build', to: 'sessions#build', as: 'session_build'
   
   resources :sessions
   resources :session_dates

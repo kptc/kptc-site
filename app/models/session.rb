@@ -6,7 +6,7 @@ class Session < ActiveRecord::Base
   belongs_to :session_type
   
   default_scope {
-    order(start_date: :asc)
+    order(start_date: :desc)
   }
   
   # --- Validations ---
@@ -32,9 +32,15 @@ class Session < ActiveRecord::Base
     where("? BETWEEN start_date AND end_date", Date.today)
   end
   
+  def self.upcoming
+    where("? < start_date AND end_date", Date.today)
+  end
+  
   def self.past
     where("? > start_date AND end_date", Date.today)
   end
+  
+  # --- Other Methods ---
   
   def get_time_of_day(time_of_day_id)
     times = {

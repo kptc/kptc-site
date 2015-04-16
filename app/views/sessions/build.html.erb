@@ -1,0 +1,29 @@
+<div class="row">
+  <div class=col-xs-24>
+    
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Build Session</h1>
+        <h2><%= @session.name %></h2>
+        <p><%= @session.dates %></p>
+      </div>
+      <div class="col-xs-12">
+        <%= link_to raw(fa_icon 'reply'), :back, class: 'btn-primary pull-right', title: 'Back' %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-xs-12">
+        
+      </div>
+      <div class="col-xs-12">
+        <ul>
+          <% @available_players.each do |player| %>
+            <li><%= player.name %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+      
+  </div>
+</div>

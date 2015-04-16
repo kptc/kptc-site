@@ -3,13 +3,21 @@ class PlayersController < ApplicationController
   before_action :authenticate_player!
   
   def index
-    @players = Player.all
+    @players = Player.includes(
+      {sessions: [ # restrict to latest session that does not start in the future
+        :session_dates,
+        {player_sessions: :ranking},
+      ]}
+    ).all
     @roles = Role.all
   end
 
   def show
     @player = Player.includes(
-      {sessions: [:session_dates, {player_sessions: :ranking}]}
+      {sessions: [
+        :session_dates,
+        {player_sessions: :ranking},
+      ]}
     ).find(params[:id])
     
   end
@@ -50,8 +58,6 @@ class PlayersController < ApplicationController
     else
       render 'index'
     end
-  
-    
   end
 
   #def create

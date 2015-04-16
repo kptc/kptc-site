@@ -8,6 +8,10 @@ class Player < ActiveRecord::Base
   
   has_many :sessions, through: :player_sessions
   
+  default_scope {
+    order('role', 'last_name')
+  }
+  
   # --- Validations ---
   
   validates :first_name, :last_name, :email, :phone, :gender, :presence => {
@@ -30,8 +34,12 @@ class Player < ActiveRecord::Base
   
   # --- Scopes ----
 
-  def admin?
-    self.role == 'A'
+  def self.admin?
+    role == 'A'
+  end
+  
+  def self.gender(gender)
+    where(gender: gender)
   end
   
 end

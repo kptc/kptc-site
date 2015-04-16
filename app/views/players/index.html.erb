@@ -4,6 +4,7 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Rank</th>
           <th>Email</th>
           <th>Phone</th>
           <th>Role</th>
@@ -12,8 +13,18 @@
       </thead>
       <tbody>
         <% @players.each do |player| %>
+          
+          <%
+            if player.player_sessions.present?
+              rank = player.player_sessions.first.ranking.rank
+            else
+              rank = ""
+            end
+          %>
+        
           <tr>
             <td><%= player.name %></td>
+            <td><%= rank %></td>
             <td><%= player.email %></td>
             <td><%= player.phone %></td>
             <td><%= @roles[player.role] %></td>

@@ -24,10 +24,18 @@
         </thead>
         <tbody>
           <% @sessions.each do |session| %>
+          
+          <%
+            build_link_class = 'btn-primary'
+            if session.start_date <= Date.today
+              build_link_class += ' disabled'
+            end
+          %>
             <tr>
               <td><%= session.name %></td>
               <td><%= session.dates + ' (' + session.session_dates.count.to_s + ' Matches)' %></td>
               <td>
+                <%= link_to raw(fa_icon 'puzzle-piece'), session_build_path(session), class: build_link_class, title: 'Build' %>
                 <%= link_to raw(fa_icon 'share'), session_path(session), class: 'btn-primary', title: 'View' %>
                 <%= link_to raw(fa_icon 'pencil'), edit_session_path(session), class: 'btn-primary', title: 'Edit' %>
                 <%= link_to raw(fa_icon 'remove'), session_path(session), method: :delete, class: 'btn-primary', title: 'Delete' %>

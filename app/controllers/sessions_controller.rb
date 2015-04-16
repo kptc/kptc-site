@@ -46,6 +46,16 @@ class SessionsController < ApplicationController
       render 'edit'
     end
   end
+  
+  def build
+    @session = Session.find(params[:id])
+    @available_players = Player.includes(
+      {sessions: [
+        :session_dates,
+        {player_sessions: :ranking},
+      ]}
+    ).gender(@session.gender).all
+  end
 
   def destroy
     @session = Session.find(params[:id])
@@ -70,7 +80,7 @@ private
      'N' => 'Night',
      'D' => 'Day'
     }
-    @genders = Gender.select(:id, :name)
+    @genders = Gender.all
     @session_types = SessionType.select(:id, :name)
     render 'form'
   end
