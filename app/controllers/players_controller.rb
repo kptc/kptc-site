@@ -4,9 +4,9 @@ class PlayersController < ApplicationController
   
   def index
     @players = Player.includes(
-      {sessions: [ # restrict to latest session that does not start in the future
+      {sessions: [
         :session_dates,
-        {player_sessions: :ranking},
+        :player_sessions
       ]}
     ).references(:sessions).merge(Session.current)
     @roles = Role.all
@@ -16,9 +16,11 @@ class PlayersController < ApplicationController
     @player = Player.includes(
       {sessions: [
         :session_dates,
-        {player_sessions: :ranking},
+        :player_sessions
       ]}
     ).find(params[:id])
+    
+    @upcoming_sessions = Session.upcoming.gender(@player.gender).all
     
   end
   

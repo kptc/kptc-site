@@ -12,6 +12,28 @@
   
   <div class="col-xs-24 col-sm-18">
     
+    <% if @upcoming_sessions %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>Choose Your Sessions!</h2>
+        </div>
+        <div class="panel-body">
+          <%= form_for @player do |f| %>
+            <div class="checkbox">
+              <%=
+                f.collection_check_boxes(:session_ids, @upcoming_sessions, :id, :name) do |c|
+                  c.label do
+                    c.check_box + c.text
+                  end
+                end
+              %>
+            </div>
+            <%= submit_tag 'Save', class: 'btn-primary' %>
+          <% end %>
+        </div>
+      </div> <!-- panel -->
+    <% end %>
+    
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2>Current Sessions</h2>

@@ -3,6 +3,8 @@ class Session < ActiveRecord::Base
   has_many :player_sessions
   has_many :session_dates
   
+  has_many :players, through: :player_sessions
+  
   belongs_to :session_type
   
   default_scope {
@@ -40,6 +42,10 @@ class Session < ActiveRecord::Base
     where("? > start_date AND end_date", Date.today)
   end
   
+  def self.gender(gender)
+    where(gender: gender)
+  end
+
   # --- Other Methods ---
   
   def get_time_of_day(time_of_day_id)

@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414052022) do
+ActiveRecord::Schema.define(version: 20150417010631) do
 
   create_table "player_sessions", force: :cascade do |t|
     t.integer  "player_id"
     t.integer  "session_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "rank_letter"
+    t.integer  "rank_number"
   end
 
   add_index "player_sessions", ["player_id"], name: "index_player_sessions_on_player_id"
@@ -45,16 +47,6 @@ ActiveRecord::Schema.define(version: 20150414052022) do
 
   add_index "players", ["email"], name: "index_players_on_email", unique: true
   add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
-
-  create_table "rankings", force: :cascade do |t|
-    t.integer  "player_session_id"
-    t.string   "rank_letter"
-    t.integer  "rank_number"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "rankings", ["player_session_id"], name: "index_rankings_on_player_session_id"
 
   create_table "session_dates", force: :cascade do |t|
     t.integer  "session_id"

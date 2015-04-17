@@ -52,7 +52,7 @@ class SessionsController < ApplicationController
     @available_players = Player.includes(
       {sessions: [
         :session_dates,
-        {player_sessions: :ranking},
+        :player_sessions
       ]}
     ).gender(@session.gender).all
   end
