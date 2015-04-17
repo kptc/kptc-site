@@ -4,7 +4,7 @@ class Player < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  has_many :player_sessions
+  has_many :player_sessions#, dependent: :destroy :nullify
   
   has_many :sessions, through: :player_sessions
   
@@ -34,8 +34,8 @@ class Player < ActiveRecord::Base
   
   # --- Scopes ----
 
-  def self.admin?
-    role == 'A'
+  def admin?
+    self.role == 'A'
   end
   
   def self.gender(gender)

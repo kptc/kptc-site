@@ -8,7 +8,7 @@ class PlayersController < ApplicationController
         :session_dates,
         {player_sessions: :ranking},
       ]}
-    ).all
+    ).references(:sessions).merge(Session.current)
     @roles = Role.all
   end
 

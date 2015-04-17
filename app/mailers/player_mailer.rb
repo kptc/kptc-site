@@ -5,7 +5,7 @@ class PlayerMailer < ApplicationMailer
     mail(
       to: @player.email,
       subject: 'You have successfully registered with KPTC'
-    )
+    ) # mail method equivalent to render
   end
   
   def registration_admin_email(player)

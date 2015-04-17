@@ -28,6 +28,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'email_validator', :require => 'email_validator/strict'
 gem 'devise'
+gem 'dotenv-rails', :group => [:development, :test]
+gem 'sucker_punch'
 
 gem 'font-awesome-rails'
 gem 'best_in_place', '~> 3.0.1'

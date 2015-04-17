@@ -17,9 +17,11 @@
         
       </div>
       <div class="col-xs-12">
-        <ul>
+        <ul class="list-group">
           <% @available_players.each do |player| %>
-            <li><%= player.name %></li>
+            <li class="list-group-item">
+              <%= raw(fa_icon 'bars', text: ' ' + player.name) %>
+            </li>
           <% end %>
         </ul>
       </div>

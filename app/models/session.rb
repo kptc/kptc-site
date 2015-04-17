@@ -29,7 +29,7 @@ class Session < ActiveRecord::Base
   # --- Scopes ---
   
   def self.current
-    where("? BETWEEN start_date AND end_date", Date.today)
+    where("? BETWEEN sessions.start_date AND sessions.end_date", Date.today)
   end
   
   def self.upcoming
