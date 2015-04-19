@@ -24,9 +24,12 @@ class SessionsController < ApplicationController
     
     set_start_date = Session.set_start_date(post_params[:start_date], post_params[:day_of_week])
     set_end_date = Session.set_end_date(post_params[:end_date], post_params[:day_of_week])
+    generated_session_times = Session.generated_session_times(post_params[:session_times_attributes], set_start_date, set_end_date)
+    
     @session = Session.new(post_params.merge(
       start_date: set_start_date,
-      end_date: set_end_date
+      end_date: set_end_date,
+      session_times_attributes: generated_session_times
     ))
     
     if @session.save

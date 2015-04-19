@@ -74,7 +74,7 @@ class Session < ActiveRecord::Base
       difference = (day_of_week < start_date_wday) ? day_of_week - start_date_wday + 7 : day_of_week - start_date_wday
       start_date = start_date.to_time + difference.days
     end
-    start_date
+    start_date.to_time
   end
   
   def self.set_end_date(end_date, day_of_week)
@@ -84,11 +84,33 @@ class Session < ActiveRecord::Base
       difference = (day_of_week > end_date_wday) ? end_date_wday - day_of_week  + 7 : end_date_wday - day_of_week
       end_date = end_date.to_time - difference.days
     end
-    end_date
+    end_date.to_time
+  end
+  
+  def self.generated_session_times(session_times_attributes, set_start_date, set_end_date)
+    generated_session_times = {}
+    number_of_matches = Session.number_of_matches(set_start_date, set_end_date)
+    session_date = set_start_date
+    
+    number_of_matches.times do |i|
+      session_times_attributes.each_with_index do |session_start_time, index|
+        session_time = (session_times_attributes[index.to_s][:start_time]).to_time
+        session_date_time = DateTime.new(session_date.year, session_date.month, session_date.day, session_time.hour, session_time.min, session_time.sec)
+        generated_session_times.merge!((i * 3 + index).to_s => {"start_time" => session_date_time})
+      end
+      i += 1
+      session_date = session_date + 7.days
+    end
+    
+    generated_session_times
   end
   
 private
 
+  def self.number_of_matches(start_date, end_date)
+    ((end_date - start_date) / 86400).to_i / 7 + 1
+  end
+  
   def get_time_of_day(time_of_day_id)
     times = {
       "N" => "Night",
