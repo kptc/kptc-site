@@ -14,11 +14,21 @@ class SessionsController < ApplicationController
   
   def new
     @session = Session.new
+    3.times do
+      session_time = @session.session_times.build
+    end
     form
   end
 
   def create
-    @session = Session.new(post_params)
+    
+    set_start_date = Session.set_start_date(post_params[:start_date], post_params[:day_of_week])
+    set_end_date = Session.set_end_date(post_params[:end_date], post_params[:day_of_week])
+    @session = Session.new(post_params.merge(
+      start_date: set_start_date,
+      end_date: set_end_date
+    ))
+    
     if @session.save
       flash[:notice] = {
         :class => 'success',
@@ -106,7 +116,8 @@ private
       :start_date,
       :end_date,
       :gender,
-      :session_type_id
+      :session_type_id,
+      session_times_attributes: [:start_time]
     )
   end
 end

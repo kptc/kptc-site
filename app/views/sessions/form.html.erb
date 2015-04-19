@@ -2,7 +2,7 @@
 
 <%= form_for @session do |f| %>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-24 col-sm-12">
       <div class="form-group">
         <%= f.label :day_of_week, 'Day of the Week', class: 'control-label' %>
         <%= f.collection_select :day_of_week, Date::DAYNAMES.zip((0..6).to_a), :last, :first,
@@ -12,7 +12,7 @@
         <%= show_errors(@session, :day_of_week) %>
       </div>
     </div>
-    <div class="col-xs-12">
+    <div class="col-xs-24 col-sm-12">
       <div class="form-group">
         <%= f.label :time_of_day, 'Time of Day', class: 'control-label' %>
         <%= f.collection_select :time_of_day, @times, :first, :last,
@@ -24,18 +24,27 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-24 col-sm-12 col-md-6">
+    <div class="col-xs-24 col-sm-12">
       <div class="form-group">
         <%= f.label :start_date, 'Start Date', class: 'control-label' %>
         <%= f.text_field :start_date, class: 'form-control datepicker' %>
         <%= show_errors(@session, :start_date) %>
       </div>
     </div>
-    <div class="col-xs-24 col-sm-12 col-md-6">
+    <div class="col-xs-24 col-sm-12">
       <div class="form-group">
         <%= f.label :end_date, 'End Date', class: 'control-label' %>
         <%= f.text_field :end_date, class: 'form-control datepicker' %>
         <%= show_errors(@session, :end_date) %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24 col-md-12">
+      <div class="form-group">
+        <%= f.fields_for :session_times do |builder| %>
+          <%= render 'session_time_fields', :f => builder %>
+        <% end %>
       </div>
     </div>
   </div>

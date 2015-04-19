@@ -1,11 +1,12 @@
 class Session < ActiveRecord::Base
   
   has_many :player_sessions
-  has_many :session_times
+  has_many :session_times, autosave: true, dependent: :destroy
+  accepts_nested_attributes_for :session_times
   has_many :sub_preferences, dependent: :destroy
   
   has_many :players, through: :player_sessions
-  accepts_nested_attributes_for :players
+    accepts_nested_attributes_for :players
   
   belongs_to :session_type
   
@@ -64,6 +65,26 @@ class Session < ActiveRecord::Base
 
   def self.registration_deadline(sessions)
     sessions.last.start_date - 14
+  end
+  
+  def self.set_start_date(start_date, day_of_week)
+    day_of_week = day_of_week.to_i
+    start_date_wday = start_date.to_date.wday.to_i
+    if start_date_wday != day_of_week
+      difference = (day_of_week < start_date_wday) ? day_of_week - start_date_wday + 7 : day_of_week - start_date_wday
+      start_date = start_date.to_time + difference.days
+    end
+    start_date
+  end
+  
+  def self.set_end_date(end_date, day_of_week)
+    day_of_week = day_of_week.to_i
+    end_date_wday = end_date.to_date.wday.to_i
+    if end_date_wday != day_of_week
+      difference = (day_of_week > end_date_wday) ? end_date_wday - day_of_week  + 7 : end_date_wday - day_of_week
+      end_date = end_date.to_time - difference.days
+    end
+    end_date
   end
   
 private

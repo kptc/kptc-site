@@ -4,6 +4,10 @@ $(document).ready(function() {
   
   $('.best_in_place').best_in_place();
   
+  $('.datetimepicker').datetimepicker({
+    format: 'Y-m-d h:i a'
+  });  
+  
   $('.datepicker').datetimepicker({
     format: 'Y-m-d',
     timepicker: false
