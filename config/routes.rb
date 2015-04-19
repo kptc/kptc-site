@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   put 'player/:id/admin', to: 'players#toggle_admin', as: 'player_admin'
   put 'player/:id/activate', to: 'players#toggle_activate', as: 'player_activate'
   get 'player/:id/profile', to: 'players#show', as: 'player'
+  patch 'player/:id/update_sessions', to: 'players#update_sessions', as: 'player_update_sessions'
 
   get 'sessions/:id/build', to: 'sessions#build', as: 'session_build'
   

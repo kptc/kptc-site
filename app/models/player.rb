@@ -5,8 +5,10 @@ class Player < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many :player_sessions#, dependent: :destroy :nullify
+  has_many :sub_preferences, dependent: :destroy
   
   has_many :sessions, through: :player_sessions
+  accepts_nested_attributes_for :sessions
   
   default_scope {
     order('role', 'last_name')

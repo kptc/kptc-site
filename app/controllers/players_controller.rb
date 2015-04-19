@@ -20,7 +20,11 @@ class PlayersController < ApplicationController
       ]}
     ).find(params[:id])
     
+    @current_sessions = @player.sessions.current.all
     @upcoming_sessions = Session.upcoming.gender(@player.gender).all
+    @registration_deadline = Session.registration_deadline(@upcoming_sessions)
+    
+    @sub_preferences = SubPreference.where(session_id: @upcoming_sessions.map(&:id))
     
   end
   
@@ -59,6 +63,35 @@ class PlayersController < ApplicationController
       redirect_to '/players'
     else
       render 'index'
+    end
+  end
+  
+  def update_sessions
+    player = Player.find(params[:id])
+    
+    updated_session_ids = []
+    player.sessions.upcoming(false).each do |existing|
+      updated_session_ids.push(existing.id.to_s)
+    end
+    params[:player][:session_ids].each do |upcoming_id|
+      updated_session_ids.push(upcoming_id)
+    end
+    player.session_ids = updated_session_ids
+    
+    SubPreference.includes(
+      :session
+    ).references(:session).merge(Session.upcoming).where(player_id: params[:id]).destroy_all
+    
+    params[:player][:sub_preference_ids].each do |sub|
+      if not sub.blank?
+        player.sub_preferences.build(player_id: params[:id], session_id: sub)
+      end
+    end
+    
+    if player.save
+      redirect_to player_path
+    else
+      render show
     end
   end
 

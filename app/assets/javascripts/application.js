@@ -16,4 +16,5 @@
 //= require best_in_place.jquery-ui
 //= require jquery.datetimepicker
 //= require_tree ./bootstrap/
+//= require 'icheck'
 //= require script

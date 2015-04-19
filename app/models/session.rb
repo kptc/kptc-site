@@ -2,8 +2,10 @@ class Session < ActiveRecord::Base
   
   has_many :player_sessions
   has_many :session_dates
+  has_many :sub_preferences, dependent: :destroy
   
   has_many :players, through: :player_sessions
+  accepts_nested_attributes_for :players
   
   belongs_to :session_type
   
@@ -34,8 +36,12 @@ class Session < ActiveRecord::Base
     where("? BETWEEN sessions.start_date AND sessions.end_date", Date.today)
   end
   
-  def self.upcoming
-    where("? < start_date AND end_date", Date.today)
+  def self.upcoming(positive = true)
+    if (positive)
+      where("? < start_date AND end_date", Date.today)
+    else
+      where.not("? < start_date AND end_date", Date.today)
+    end
   end
   
   def self.past
@@ -47,7 +53,13 @@ class Session < ActiveRecord::Base
   end
 
   # --- Other Methods ---
+
+  def self.registration_deadline(sessions)
+    sessions.last.start_date - 14
+  end
   
+private
+
   def get_time_of_day(time_of_day_id)
     times = {
       "N" => "Night",
