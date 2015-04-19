@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def show
-    @session = Session.includes(:session_dates).find(params[:id])
+    @session = Session.includes(:session_times).find(params[:id])
   end
   
   def new
@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
     @session = Session.find(params[:id])
     @available_players = Player.includes(
       {sessions: [
-        :session_dates,
+        :session_times,
         :player_sessions
       ]}
     ).gender(@session.gender).all
@@ -105,8 +105,6 @@ private
       :time_of_day,
       :start_date,
       :end_date,
-      :start_time,
-      :end_time,
       :gender,
       :session_type_id
     )

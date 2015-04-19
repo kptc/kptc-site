@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418213845) do
+ActiveRecord::Schema.define(version: 20150419170642) do
 
   create_table "player_sessions", force: :cascade do |t|
     t.integer  "player_id"
@@ -48,14 +48,14 @@ ActiveRecord::Schema.define(version: 20150418213845) do
   add_index "players", ["email"], name: "index_players_on_email", unique: true
   add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
 
-  create_table "session_dates", force: :cascade do |t|
+  create_table "session_times", force: :cascade do |t|
     t.integer  "session_id"
-    t.date     "dt"
+    t.datetime "start_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "session_dates", ["session_id"], name: "index_session_dates_on_session_id"
+  add_index "session_times", ["session_id"], name: "index_session_times_on_session_id"
 
   create_table "session_types", force: :cascade do |t|
     t.string   "name"
@@ -69,8 +69,6 @@ ActiveRecord::Schema.define(version: 20150418213845) do
     t.string   "day_of_week"
     t.date     "start_date"
     t.date     "end_date"
-    t.time     "start_time"
-    t.time     "end_time"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.string   "gender"

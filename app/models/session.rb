@@ -1,7 +1,7 @@
 class Session < ActiveRecord::Base
   
   has_many :player_sessions
-  has_many :session_dates
+  has_many :session_times
   has_many :sub_preferences, dependent: :destroy
   
   has_many :players, through: :player_sessions
@@ -28,10 +28,6 @@ class Session < ActiveRecord::Base
   
   def dates
     start_date.strftime("%B #{start_date.day.ordinalize}, %Y") + " - " + end_date.strftime("%B #{end_date.day.ordinalize}, %Y")
-  end
-  
-  def date
-    dt.strftime("%B #{dt.day.ordinalize}, %Y")
   end
   
   # --- Scopes ---

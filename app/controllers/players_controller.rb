@@ -6,14 +6,14 @@ class PlayersController < ApplicationController
       
     @current_players = Player.includes(
       {sessions: [
-        :session_dates,
+        :session_times,
         :player_sessions
       ]}
     ).references(:sessions).merge(Session.current)
     
     @other_players = Player.includes(
       {sessions: [
-        :session_dates,
+        :session_times,
         :player_sessions # order player_sessions by sessions.start_date DESC (get most recent)
       ]}
     ).order("sessions.start_date DESC").where.not(id: @current_players.map(&:id)).page params[:page]
@@ -25,7 +25,7 @@ class PlayersController < ApplicationController
   def show
     @player = Player.includes(
       {sessions: [
-        :session_dates,
+        :session_times,
         :player_sessions
       ]}
     ).find(params[:id])
