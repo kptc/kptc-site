@@ -32,20 +32,28 @@ class Session < ActiveRecord::Base
   
   # --- Scopes ---
   
-  def self.current
-    where("? BETWEEN sessions.start_date AND sessions.end_date", Date.today)
+  def self.current(positive = true)
+    if (positive)
+      where("? BETWEEN sessions.start_date AND sessions.end_date", Date.today)
+    else
+      where.not("? BETWEEN sessions.start_date AND sessions.end_date", Date.today)
+    end
   end
   
   def self.upcoming(positive = true)
     if (positive)
-      where("? < start_date AND end_date", Date.today)
+      where("? < sessions.start_date", Date.today)
     else
-      where.not("? < start_date AND end_date", Date.today)
+      where.not("? < sessions.start_date", Date.today)
     end
   end
   
-  def self.past
-    where("? > start_date AND end_date", Date.today)
+  def self.past(positive = true)
+    if (positive)
+      where("? > sessions.end_date", Date.today)
+    else
+      where.not("? > sessions.end_date", Date.today)
+    end
   end
   
   def self.gender(gender)

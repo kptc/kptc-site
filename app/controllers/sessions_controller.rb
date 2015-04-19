@@ -56,6 +56,18 @@ class SessionsController < ApplicationController
       ]}
     ).gender(@session.gender).all
   end
+  
+  def update_session_players
+    @session = Session.find(params[:id])
+    
+    @session.player_ids = params[:session][:player_ids]
+    
+    if @session.save
+      redirect_to session_build_path
+    else
+      render build
+    end
+  end
 
   def destroy
     @session = Session.find(params[:id])

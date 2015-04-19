@@ -3,13 +3,23 @@ class PlayersController < ApplicationController
   before_action :authenticate_player!
   
   def index
-    @players = Player.includes(
+      
+    @current_players = Player.includes(
       {sessions: [
         :session_dates,
         :player_sessions
       ]}
     ).references(:sessions).merge(Session.current)
+    
+    @other_players = Player.includes(
+      {sessions: [
+        :session_dates,
+        :player_sessions
+      ]}
+    ).references(:sessions).merge(Session.past)
+    
     @roles = Role.all
+    
   end
 
   def show

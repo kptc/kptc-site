@@ -1,90 +1,24 @@
 <div class="row">
   <div class=col-xs-24>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Rank</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Role</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @players.each do |player| %>
-          
-          <%
-            if player.player_sessions.present?
-              rank = player.player_sessions.first.rank
-            else
-              rank = ""
-            end
-          %>
-        
-          <tr>
-            <td><%= player.name %></td>
-            <td><%= rank %></td>
-            <td><%= player.email %></td>
-            <td><%= player.phone %></td>
-            <td><%= @roles[player.role] %></td>
-            <%
-              actions = case
-                when player.role == 'A'
-                  {
-                    'activate' => {
-                      label: fa_icon('thumbs-down'),
-                      href: player_activate_path(player),
-                      class: 'btn-primary',
-                      title: ''
-                    },
-                    'adminify' => {
-                      label: fa_icon('star-half-empty'),
-                      href: player_admin_path(player),
-                      class: 'btn-primary',
-                      title: 'Limit to User'
-                    }
-                  }
-                when player.role == 'U'
-                  {
-                    'activate' => {
-                      label: fa_icon('thumbs-down'),
-                      href: player_activate_path(player),
-                      class: 'btn-primary',
-                      title: 'Deactivate'
-                    },
-                    'adminify' => {
-                      label: fa_icon('star'),
-                      href: player_admin_path(player),
-                      class: 'btn-primary',
-                      title: 'Make Admin'
-                    }
-                  }
-                else
-                 {
-                    'activate' => {
-                      label: fa_icon('thumbs-up'),
-                      href: player_activate_path(player),
-                      class: 'btn-primary',
-                      title: 'Activate'
-                    },
-                    'adminify' => {
-                      label: fa_icon('star'),
-                      href: '#',
-                      class: 'btn-primary disabled',
-                      title: ''
-                    }
-                  }
-              end
-            %>
-            <td>
-              <% actions.each do |action| %>
-                <%= link_to raw(action[1][:label]), action[1][:href], method: 'put', class: action[1][:class], title: action[1][:title] %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="panel panel-default">
+      
+      <div class="panel-heading">
+        <h2>Current Players</h2>
+      </div>
+      
+      <div class="panel-body">
+        <%= render 'player_list', players: @current_players %>
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      
+      <div class="panel-heading">
+        <h2>Other Players</h2>
+      </div>
+      <div class="panel-body">
+        <%= render 'player_list', players: @other_players %>
+      </div>
+    </div>
   </div>
 </div>

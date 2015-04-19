@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   patch 'player/:id/update_sessions', to: 'players#update_sessions', as: 'player_update_sessions'
 
   get 'sessions/:id/build', to: 'sessions#build', as: 'session_build'
+  patch 'sessions/:id/update_session_players', to: 'sessions#update_session_players', as: 'update_session_players'
   
   resources :sessions
   resources :session_dates
