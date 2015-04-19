@@ -14,6 +14,8 @@ class Player < ActiveRecord::Base
     order('role', 'last_name')
   }
   
+  paginates_per 10
+  
   # --- Validations ---
   
   validates :first_name, :last_name, :email, :phone, :gender, :presence => {

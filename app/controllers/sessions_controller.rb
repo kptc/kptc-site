@@ -3,7 +3,9 @@ class SessionsController < ApplicationController
   before_action :authenticate_player!
   
   def index
-    @sessions = Session.includes(:session_type)
+    @upcoming_sessions = Session.includes(:session_type, :players).upcoming
+    @current_sessions = Session.includes(:session_type, :players).current
+    @past_sessions = Session.includes(:session_type, :players).past
   end
 
   def show

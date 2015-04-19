@@ -14,9 +14,9 @@ class PlayersController < ApplicationController
     @other_players = Player.includes(
       {sessions: [
         :session_dates,
-        :player_sessions
+        :player_sessions # order player_sessions by sessions.start_date DESC (get most recent)
       ]}
-    ).references(:sessions).merge(Session.past)
+    ).order("sessions.start_date DESC").where.not(id: @current_players.map(&:id)).page params[:page]
     
     @roles = Role.all
     

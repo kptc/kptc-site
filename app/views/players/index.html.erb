@@ -18,6 +18,7 @@
       </div>
       <div class="panel-body">
         <%= render 'player_list', players: @other_players %>
+        <%= paginate @other_players %>
       </div>
     </div>
   </div>

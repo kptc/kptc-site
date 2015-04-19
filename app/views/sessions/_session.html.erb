@@ -13,9 +13,9 @@
 </tr>
 <tr>
   <td colspan="3">
-    <ul>
-      <% session.session_dates.each do |date| %>
-        <li><%= date.dt %></li>
+    <ul class="list-group">
+      <% session.session_dates.each do |session_date| %>
+        <li class="list-group-item"><%= session_date.date %></li>
       <% end %>
     </ul>
   </td>

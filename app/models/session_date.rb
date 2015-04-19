@@ -6,7 +6,7 @@ class SessionDate < ActiveRecord::Base
     order(dt: :asc)
   }
   
-  def text_date
+  def date
     dt.strftime("%B #{dt.day.ordinalize}, %Y")
   end
   

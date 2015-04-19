@@ -27,7 +27,11 @@ class Session < ActiveRecord::Base
   end
   
   def dates
-    start_date.strftime("%B #{start_date.day.ordinalize}, %Y") + ' to ' + end_date.strftime("%B #{end_date.day.ordinalize}, %Y")
+    start_date.strftime("%B #{start_date.day.ordinalize}, %Y") + " - " + end_date.strftime("%B #{end_date.day.ordinalize}, %Y")
+  end
+  
+  def date
+    dt.strftime("%B #{dt.day.ordinalize}, %Y")
   end
   
   # --- Scopes ---
