@@ -1,0 +1,9 @@
+<tr>
+  <td>
+    <%= best_in_place session_time, :start_time, :inner_class => 'datepicker' %>
+  </td>
+  <td>
+    <%= link_to raw(fa_icon 'pencil'), edit_session_time_path(session_time), class: 'btn-primary', title: 'Edit' %>
+    <%= link_to raw(fa_icon 'remove'), session_time_path(session_time), method: :delete, class: 'btn-primary', title: 'Delete' %>
+  </td>
+</tr>
