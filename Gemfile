@@ -31,15 +31,20 @@ gem 'devise'
 gem 'dotenv-rails', :group => [:development, :test]
 gem 'sucker_punch'
 
+# Paginator
 gem 'kaminari'
 
 # Forms
 gem 'simple_form'
 gem 'best_in_place', '~> 3.0.1'
 
-#Icons
+# Icons
 gem 'font-awesome-rails'
 gem 'icheck-rails'
+
+# Calendar
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

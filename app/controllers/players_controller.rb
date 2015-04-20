@@ -31,6 +31,7 @@ class PlayersController < ApplicationController
     ).find(params[:id])
     
     @current_sessions = @player.sessions.current.all
+    
     @upcoming_sessions = Session.upcoming.gender(@player.gender).all
     @registration_deadline = Session.registration_deadline(@upcoming_sessions)
     

@@ -2,6 +2,24 @@
 
 $(document).ready(function() {
   
+  $('#calendar').fullCalendar({
+    events: 
+    [
+      {
+        title  : "Game",
+        start  : "2015-04-01 19:00:00",
+        end    : "2015-04-01 20:00:00",
+        allDay : 0
+      },
+      {
+        title  : "Game",
+        start  : "2015-04-08 19:00:00",
+        end    : "2015-04-08 20:00:00",
+        allDay : 0
+      },
+    ]
+  });
+  
   $('.best_in_place').best_in_place();
   
   $('.datetimepicker').datetimepicker({
@@ -34,6 +52,6 @@ $(document).ready(function() {
   }
   $(function(){
     icheck();
-  })
+  });
   
 });
