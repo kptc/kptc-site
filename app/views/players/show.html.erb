@@ -12,7 +12,7 @@
   
   <div class="col-xs-24 col-sm-18">
     
-    <% if @upcoming_sessions && Time.now < @registration_deadline %>
+    <% if @upcoming_sessions && @registration_deadline && Time.now < @registration_deadline %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h2>Choose Your Sessions!</h2>
