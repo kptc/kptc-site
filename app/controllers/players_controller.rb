@@ -31,12 +31,23 @@ class PlayersController < ApplicationController
     ).find(params[:id])
     
     @current_sessions = @player.sessions.current.all
-    
     @upcoming_sessions = Session.upcoming.gender(@player.gender).all
     @registration_deadline = Session.registration_deadline(@upcoming_sessions)
     
     @sub_preferences = SubPreference.where(session_id: @upcoming_sessions.map(&:id))
     
+  end
+  
+  def calendar
+    @player = Player.find(params[:id])
+    @player_session_times = @player.session_times
+    
+    respond_to do |format| 
+      format.html
+      format.json {
+        render :json => @player_session_times
+      } 
+    end
   end
   
   def toggle_activate

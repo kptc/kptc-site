@@ -14,6 +14,8 @@ class Session < ActiveRecord::Base
     order(start_date: :desc)
   }
   
+  paginates_per 10
+  
   # --- Validations ---
   
   # --- Virtual Attributes ---

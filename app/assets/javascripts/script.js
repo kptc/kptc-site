@@ -3,21 +3,14 @@
 $(document).ready(function() {
   
   $('#calendar').fullCalendar({
-    events: 
-    [
+    eventSources: [
       {
-        title  : "Game",
-        start  : "2015-04-01 19:00:00",
-        end    : "2015-04-01 20:00:00",
-        allDay : 0
-      },
-      {
-        title  : "Game",
-        start  : "2015-04-08 19:00:00",
-        end    : "2015-04-08 20:00:00",
-        allDay : 0
-      },
-    ]
+        url: "/player/2/calendar",
+        color: '#337ab7',
+        textColor: 'white'
+      }
+    ],
+    timeFormat: 'LT'
   });
   
   $('.best_in_place').best_in_place();

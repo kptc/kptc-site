@@ -36,9 +36,13 @@
       <% end %>
     </tbody>
   </table>
-
+  <div class="panel-footer">
+    <%= paginate sessions %>
+  </div>
+  
 <% else %>
-
-  <p>No sessions available</p>
-
+  <div class="panel-body">
+    <p>No sessions available</p>
+  </div>
 <% end %>
+
