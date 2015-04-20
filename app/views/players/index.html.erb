@@ -5,10 +5,7 @@
       <div class="panel-heading">
         <h2>Current Players</h2>
       </div>
-      
-      <div class="panel-body">
-        <%= render 'player_list', players: @current_players %>
-      </div>
+      <%= render 'player_list', players: @current_players %>
     </div>
     
     <div class="panel panel-default">
@@ -16,8 +13,8 @@
       <div class="panel-heading">
         <h2>Other Players</h2>
       </div>
-      <div class="panel-body">
-        <%= render 'player_list', players: @other_players %>
+      <%= render 'player_list', players: @other_players %>
+      <div class="panel-footer">
         <%= paginate @other_players %>
       </div>
     </div>

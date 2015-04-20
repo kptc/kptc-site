@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_id: 
+  session_time_id: 
+  score: 1
+
+two:
+  player_id: 
+  session_time_id: 
+  score: 1

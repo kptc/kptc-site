@@ -63,13 +63,14 @@ class SessionsController < ApplicationController
   end
   
   def build
-    @session = Session.find(params[:id])
+    @session = Session.includes(:session_times).find(params[:id])
     @available_players = Player.includes(
       {sessions: [
         :session_times,
         :player_sessions
       ]}
     ).gender(@session.gender).all
+    
   end
   
   def update_session_players

@@ -9,39 +9,46 @@
         <%= link_to raw(fa_icon 'plus', text: 'Add Session'), new_session_path, class: 'btn-primary pull-right' %>
       </div>
     </div>
-  
-    <div class="panel panel-default">
       
-      <div class="panel-heading">
-        <h2>Current Sessions</h2>
-      </div>
-      
-      <div class="panel-body">
-        <%= render 'session_list', sessions: @current_sessions %>
-      </div>
-      
-    </div>
+    <ul class="nav nav-tabs">
+      <li>
+        <%= link_to raw(fa_icon 'rocket', text: 'Current'), '#current-sessions', data: {toggle: "tab"} %>
+      </li>
+      <li>
+        <%= link_to raw(fa_icon 'cubes', text: 'Upcoming'), '#upcoming-sessions', data: {toggle: "tab"} %>
+      </li>
+      <li>
+        <%= link_to raw(fa_icon 'archive', text: 'Past'), '#past-sessions', data: {toggle: "tab"} %>
+      </li>
+    </ul>
     
-    <div class="panel panel-default">
+    <div class="tab-content">
       
-      <div class="panel-heading">
-        <h2>Upcoming Sessions</h2>
+      <div class="tab-pane active" id="current-sessions">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Current Sessions</h2>
+          </div>
+          <%= render 'session_list', sessions: @current_sessions %>
+        </div>
       </div>
       
-      <div class="panel-body">
-        <%= render 'session_list', sessions: @upcoming_sessions %>
+      <div class="tab-pane" id="upcoming-sessions">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Upcoming Sessions</h2>
+          </div>
+          <%= render 'session_list', sessions: @upcoming_sessions %>
+        </div>
       </div>
       
-    </div>
-    
-    <div class="panel panel-default">
-      
-      <div class="panel-heading">
-        <h2>Past Sessions</h2>
-      </div>
-      
-      <div class="panel-body">
-        <%= render 'session_list', sessions: @past_sessions %>
+      <div class="tab-pane" id="past-sessions">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Past Sessions</h2>
+          </div>
+          <%= render 'session_list', sessions: @past_sessions %>
+        </div>
       </div>
       
     </div>

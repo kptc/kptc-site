@@ -13,7 +13,7 @@
     </div>
     
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-8">
         <%= simple_form_for @session, url: update_session_players_path do |f| %>
           <%=
             f.collection_check_boxes(:player_ids, @available_players, :id, :name, item_wrapper_tag: :div, item_wrapper_class: 'checkbox') do |c|
@@ -23,7 +23,16 @@
           <%= f.submit 'Save', class: 'btn-primary' %>
         <% end %>
       </div>
-      <div class="col-xs-12">
+      <div class="col-xs-8">
+        <ul class="list-group">
+          <% @session.session_times.each do |session_time| %>
+            <li class="list-group-item">
+              <%= session_time.date %> - <%= session_time.time %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-xs-8">
         <ul class="list-group">
           <% @available_players.each do |player| %>
             <li class="list-group-item">

@@ -1,5 +1,9 @@
 class SessionTime < ActiveRecord::Base
   
+  has_many :player_session_times
+  
+  has_many :players, through: :player_session_times
+  
   belongs_to :session
   
   default_scope {
