@@ -14,8 +14,6 @@ class Session < ActiveRecord::Base
     order(start_date: :desc)
   }
   
-  paginates_per 10
-  
   # --- Validations ---
   
   # --- Virtual Attributes ---
@@ -65,7 +63,7 @@ class Session < ActiveRecord::Base
 
   # --- Other Methods ---
 
-  def self.registration_deadline(sessions)
+  def self.registration_deadline(sessions)    
     sessions.last.start_date - 14
   end
   

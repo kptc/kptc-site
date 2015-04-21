@@ -32,7 +32,9 @@ class PlayersController < ApplicationController
     
     @current_sessions = @player.sessions.current.all
     @upcoming_sessions = Session.upcoming.gender(@player.gender).all
-    @registration_deadline = Session.registration_deadline(@upcoming_sessions)
+    if @upcoming_sessions != []
+      @registration_deadline = Session.registration_deadline(@upcoming_sessions)
+    end
     
     @sub_preferences = SubPreference.where(session_id: @upcoming_sessions.map(&:id))
     
