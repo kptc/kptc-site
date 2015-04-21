@@ -27,7 +27,7 @@ class SessionTime < ActiveRecord::Base
       :id => self.id,
       :start => start_time.rfc822,
       :end => end_time.rfc822,
-      :allDay => 0,
+      :allDay => 0
       #:url => Rails.application.routes.url_helpers.request_sub
     }
   end

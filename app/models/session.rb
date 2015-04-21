@@ -105,6 +105,14 @@ class Session < ActiveRecord::Base
     generated_session_times
   end
   
+  def self.get_dates_from_datetimes(start_date_times)
+    dates = []
+    start_date_times.each_with_index do |session_time, index|
+      dates[index] = session_time.start_time.to_date
+    end
+    dates.uniq!
+  end
+
 private
 
   def self.number_of_matches(start_date, end_date)

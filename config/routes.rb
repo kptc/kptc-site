@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   patch 'sessions/:id/update_session_players', to: 'sessions#update_session_players', as: 'update_session_players'
   
   resources :sessions
-  resources :session_dates
+  resources :session_times
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

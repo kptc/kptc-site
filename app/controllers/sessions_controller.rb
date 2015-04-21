@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
 
   def show
     @session = Session.includes(:session_times).find(params[:id])
+    time_dates = Session.get_dates_from_datetimes(@session.session_times)
   end
   
   def new
