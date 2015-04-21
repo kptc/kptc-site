@@ -5,7 +5,7 @@ $(document).ready(function() {
   $('#calendar').fullCalendar({
     eventSources: [
       {
-        url: "/player/2/calendar",
+        url: $("#calendar").data("url"),
         color: '#337ab7',
         textColor: 'white'
       }

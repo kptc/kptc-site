@@ -44,12 +44,7 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
     @player_session_times = @player.session_times
     
-    respond_to do |format| 
-      format.html
-      format.json {
-        render :json => @player_session_times
-      } 
-    end
+    render :json => @player_session_times
   end
   
   def toggle_activate
