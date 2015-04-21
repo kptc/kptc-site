@@ -3,7 +3,6 @@ class Session < ActiveRecord::Base
   has_many :player_sessions
   has_many :session_times, autosave: true, dependent: :destroy
   accepts_nested_attributes_for :session_times
-  has_many :sub_preferences, dependent: :destroy
   
   has_many :players, through: :player_sessions
     accepts_nested_attributes_for :players

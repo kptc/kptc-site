@@ -5,11 +5,10 @@ class Player < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many :player_sessions#, dependent: :destroy :nullify
-  has_many :sub_preferences, dependent: :destroy
   has_many :player_session_times
   
   has_many :sessions, through: :player_sessions
-    accepts_nested_attributes_for :sessions
+    accepts_nested_attributes_for :player_sessions
   has_many :session_times, through: :player_session_times
     accepts_nested_attributes_for :session_times
   

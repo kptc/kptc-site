@@ -36,8 +36,6 @@ class PlayersController < ApplicationController
       @registration_deadline = Session.registration_deadline(@upcoming_sessions)
     end
     
-    @sub_preferences = SubPreference.where(session_id: @upcoming_sessions.map(&:id))
-    
   end
   
   def calendar

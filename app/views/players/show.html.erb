@@ -28,13 +28,6 @@
                   end
                 %>
               </div>
-              <div class="col-xs-offset-3 col-xs-21 col-sm-offset-0 col-sm-12">
-                <%=
-                  f.collection_check_boxes(:sub_preference_ids, @upcoming_sessions, :id, :name, item_wrapper_tag: :div, item_wrapper_class: 'checkbox') do |s|
-                    s.check_box(class: 'icheck', data: {skin: 'square', color: 'green'}) + 'Sub'
-                  end
-                %>
-              </div>
             </div>
             <%= submit_tag 'Save', class: 'btn-primary' %>
           <% end %>
