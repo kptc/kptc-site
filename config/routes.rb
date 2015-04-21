@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   put 'player/:id/admin', to: 'players#toggle_admin', as: 'player_admin'
   put 'player/:id/activate', to: 'players#toggle_activate', as: 'player_activate'
   get 'player/:id/profile', to: 'players#show', as: 'player'
-  patch 'player/:id/update_sessions', to: 'players#update_sessions', as: 'player_update_sessions'
   get 'player/:id/calendar', to: 'players#calendar', as: 'calendar'
 
   get 'sessions/:id/build', to: 'sessions#build', as: 'session_build'
@@ -20,6 +19,8 @@ Rails.application.routes.draw do
   
   resources :sessions
   resources :session_times
+
+  post 'player_sessions/:player_id/create', to: 'player_sessions#create', as: 'player_sessions_new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

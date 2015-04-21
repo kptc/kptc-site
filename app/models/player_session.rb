@@ -29,7 +29,9 @@ class PlayerSession < ActiveRecord::Base
       :player_id,
       :session_id,
       :rank_letter,
-      :rank_number
+      :rank_number,
+      :is_in_session,
+      :is_sub
     )
   end
 end

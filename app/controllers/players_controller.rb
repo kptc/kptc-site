@@ -36,6 +36,10 @@ class PlayersController < ApplicationController
       @registration_deadline = Session.registration_deadline(@upcoming_sessions)
     end
     
+    @upcoming_sessions.each do |session|
+      @player.player_sessions.build(session: session)
+    end
+    
   end
   
   def calendar

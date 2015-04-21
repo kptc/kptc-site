@@ -19,13 +19,33 @@
           <p>You have until <%= @registration_deadline.strftime("%B #{@registration_deadline.day.ordinalize}, %Y") %> to edit your preferences</p>
         </div>
         <div class="panel-body">
-          <%= simple_form_for @player, url: player_update_sessions_path do |f| %>
+          <%= simple_form_for @player, url: player_sessions_new_path(@player) do |f| %>
+            <%= f.fields_for :player_sessions do |ff| %>
+              <div class="row">
+                <div class="col-xs-24 col-sm-12">
+                  <div class="checkbox">
+                    <%= ff.label :is_in_session do %>
+                      <%= ff.check_box :is_in_session, class: 'icheck', data: {skin: 'square', color: 'green'} %>
+                      <%= "Session Name, argh" %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="col-xs-offset-3 col-xs-18 col-sm-offset-0 col-sm-12">
+                  <div class="checkbox">
+                    <%= ff.label :is_sub do %>
+                      <%= ff.check_box :is_sub, class: 'icheck', data: {skin: 'square', color: 'green'} %>
+                      Sub
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
             <div class="row">
               <div class="col-xs-24 col-sm-12">
                 <%=
-                  f.collection_check_boxes(:session_ids, @upcoming_sessions, :id, :name, item_wrapper_tag: :div, item_wrapper_class: 'checkbox') do |c|
-                    c.check_box(class: 'icheck', data: {skin: 'square', color: 'green'}) + c.text
-                  end
+                  #f.collection_check_boxes(:session_ids, @upcoming_sessions, :id, :name, item_wrapper_tag: :div, item_wrapper_class: 'checkbox') do |c|
+                  #  c.check_box(class: 'icheck', data: {skin: 'square', color: 'green'}) + c.text
+                  #end
                 %>
               </div>
             </div>
