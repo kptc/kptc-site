@@ -2,6 +2,10 @@
 @import "font-awesome";
 @import "icheck/square/_all";
 
+* {
+  border-radius: 0 !important;
+}
+
 .btn-primary,
 .btn-default {
   @extend .btn;
@@ -13,4 +17,65 @@
 
 [class^="icheckbox"] {
   margin-right: 10px;
+}
+
+body {
+  background: #f6f6f6;
+  font-family: Muli, serif;
+  position: relative;
+}
+
+#header .container-fluid {
+
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+.btn-primary {
+  padding: 6px 20px;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 0;
+  border-bottom: 5px solid darken($primary-color, 10%);
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    border-color: darken($primary-color, 10%);
+  }
+}
+
+//header
+.logo {
+  img {
+    max-height: 50px;  
+  }
+}
+
+//Login page
+.log-in {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url(paddle-racket-1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  .container1 {
+    background: rgba(255,255,255, 0.56);
+    padding-bottom: 20px;
+  }
+  .checkbox input[type="checkbox"] {
+    left: 20px;
+  }
+  a {
+    color: #000;
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+// Profile styles
+.profile {
+  background: #FFF;
 }

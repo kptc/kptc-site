@@ -1,4 +1,8 @@
+<% content_for :body_class, 'log-in' %>
+<div class="login-container">
 <h1>Log In</h1>
+
+<div class="login-pic"></div>
 
 <%= form_for(resource, as: resource_name, url: player_session_path) do |f| %>
   
@@ -26,3 +30,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div> 
