@@ -23,6 +23,9 @@ $brand-danger:          #d9534f !default;
 $primary-color: #488530;
 $secondary-color: #EDE6DA;
 
+$bb-reg: 5px solid $primary-color;
+$bb-dark: 5px solid darken($primary-color, 10%);
+
 
 //== Scaffolding
 //
@@ -72,6 +75,8 @@ $headings-font-family:    inherit !default;
 $headings-font-weight:    500 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          inherit !default;
+
+
 
 
 //== Iconography
