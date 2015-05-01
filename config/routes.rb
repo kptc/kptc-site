@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   
   resources :sessions
   resources :session_times
-
-  post 'player_sessions/:player_id/create', to: 'player_sessions#create', as: 'player_sessions_new'
+  
+  patch 'player_sessions/:player_id/select', to: 'player_sessions#select', as: 'player_sessions_select'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

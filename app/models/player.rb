@@ -8,6 +8,7 @@ class Player < ActiveRecord::Base
   has_many :player_session_times
   
   has_many :sessions, through: :player_sessions
+  has_many :upcoming_sessions, ->{ upcoming }, through: :player_sessions, source: :session
     accepts_nested_attributes_for :player_sessions
   has_many :session_times, through: :player_session_times
     accepts_nested_attributes_for :session_times

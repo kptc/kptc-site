@@ -59,9 +59,9 @@
     </header>
     
     <% if flash[:notice] %>
-      <div class="alert alert-<%= #flash[:notice][:class]
+      <div class="alert alert-<%= flash[:notice][:class]
       %>">
-        <%= #flash[:notice][:body] 
+        <%= flash[:notice][:body] 
         %>
       </div>
     <% end %>
