@@ -109,7 +109,23 @@ body {
   .container1 {
     background: rgba(255,255,255, 0.56);
     padding-bottom: 20px;
-    margin-top: 40px;
+    margin-top: 120px;
+  }
+  #header {
+    position: relative;
+    &:before {
+      content: 'Welcome to Paddle';
+      position: absolute;
+      z-index: 100;
+      font-size: 30px;
+      font-weight: bold;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    .container-fluid {
+      display: none;
+    }
   }
   .checkbox input[type="checkbox"] {
     left: 20px;
