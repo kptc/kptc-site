@@ -2,6 +2,18 @@
 
 $(document).ready(function() {
   
+  //sets the variable "url" to the pathname of the current window
+  var url = window.location.pathname;
+  var activePage = url.substring(url.lastIndexOf('/') + 1);
+  $('.nav-item a').each(function () {
+    var linkPage = this.href.substring(this.href.lastIndexOf('/') + 1);
+    if (activePage == linkPage) {
+      $(this).parent().addClass('active');
+    } else if (activePage == 'profile') {
+      $('.profile-nav').addClass('active');
+    }
+  });
+
   $('#calendar').fullCalendar({
     eventSources: [
       {

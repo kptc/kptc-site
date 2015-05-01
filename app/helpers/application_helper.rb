@@ -12,5 +12,13 @@ module ApplicationHelper
       end
     end
   end
+
+  # def active_link(controller_name, controller_action=nil)
+  #   if controller_name && controller_action.present?
+  #     current_page?(controller: controller_name, action: controller_action) ? 'active': ''
+  #   else
+  #     current_page?(controller: controller_name) ? 'active': ''
+  #   end
+  # end
   
 end
