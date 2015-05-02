@@ -5,8 +5,8 @@ class PlayersController < ApplicationController
   def index
     
     # does not exclude player_sessions with iis/is false
-    @current_players = Session.joins(player_sessions: :player).where(player_sessions: {is_in_session: true}).current.group('sessions.id')
-    @current_subs = Session.joins(player_sessions: :player).where(player_sessions: {is_sub: true}).current.group('sessions.id')
+    @current_players = Session.includes(player_sessions: :player).where(player_sessions: {is_in_session: true}).current
+    @current_subs = Session.includes(player_sessions: :player).where(player_sessions: {is_sub: true}).current
     
     @inactive_players = Player.inactive?
     @all_players = Player.inactive?(false)
