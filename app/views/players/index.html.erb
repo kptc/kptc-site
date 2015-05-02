@@ -1,12 +1,65 @@
 <div class="row">
   <div class=col-xs-24>
-    <div class="panel panel-default">
-      
-      <div class="panel-heading">
-        <h2>Current Players</h2>
+    
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Players</h1>
       </div>
-
-      <%= render 'player_list', sessions: @current_players %>
+    </div>
+      
+    <ul class="nav nav-tabs">
+      <li>
+        <%= link_to raw(fa_icon 'rocket', text: 'Players'), '#current-players', data: {toggle: "tab"} %>
+      </li>
+      <li>
+        <%= link_to raw(fa_icon 'cubes', text: 'Subs'), '#current-subs', data: {toggle: "tab"} %>
+      </li>
+      <li>
+        <%= link_to raw(fa_icon 'cubes', text: 'Inactive'), '#inactive-players', data: {toggle: "tab"} %>
+      </li>
+      <li>
+        <%= link_to raw(fa_icon 'cubes', text: 'All'), '#all-players', data: {toggle: "tab"} %>
+      </li>
+    </ul>
+    
+    <div class="tab-content">
+      
+      <div class="tab-pane active" id="current-players">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Current Players</h2>
+          </div>
+          <%= render 'current_player_list', sessions: @current_players %>
+        </div>
+      </div>
+      
+      <div class="tab-pane" id="current-subs">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Current Subs</h2>
+          </div>
+          <%= render 'current_player_list', sessions: @current_subs %>
+        </div>
+      </div>
+      
+      <div class="tab-pane" id="inactive-players">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Inactive Players</h2>
+          </div>
+          <%= render 'admin_player_list', players: @inactive_players %>
+        </div>
+      </div>
+      
+      <div class="tab-pane" id="all-players">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>All Players</h2>
+          </div>
+          <%= render 'admin_player_list', players: @all_players %>
+        </div>
+      </div>
+      
     </div>
     
     <div class="panel panel-default">
@@ -18,7 +71,9 @@
         #render 'player_list', players: @other_players
       %>
       <div class="panel-footer">
-        <%= paginate @other_players %>
+        <%=
+        #paginate @all_players
+        %>
       </div>
     </div>
   </div>

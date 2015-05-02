@@ -4,15 +4,12 @@ class PlayersController < ApplicationController
   
   def index
     
-    # does not exclude player_sessions with iis false
+    # does not exclude player_sessions with iis/is false
     @current_players = Session.joins(player_sessions: :player).where(player_sessions: {is_in_session: true}).current.group('sessions.id')
+    @current_subs = Session.joins(player_sessions: :player).where(player_sessions: {is_sub: true}).current.group('sessions.id')
     
-    @other_players = Player.includes(
-      {sessions: [
-        :session_times,
-        :player_sessions # order player_sessions by sessions.start_date DESC (get most recent)
-      ]}
-    ).order("sessions.start_date DESC").where.not(id: @current_players.map(&:id)).page params[:page]
+    @inactive_players = Player.inactive?
+    @all_players = Player.inactive?(false)
     
     @roles = Role.all
     

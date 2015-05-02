@@ -45,6 +45,14 @@ class Player < ActiveRecord::Base
     self.role == 'A'
   end
   
+  def self.inactive?(positive = true)
+    if (positive)
+      where("role = ?", 'L')
+    else
+      where.not("role = ?", 'L')
+    end
+  end
+  
   def self.gender(gender)
     where(gender: gender)
   end
