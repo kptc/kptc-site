@@ -4,7 +4,6 @@ class PlayersController < ApplicationController
   
   def index
     
-    # does not exclude player_sessions with iis/is false
     @current_players = Session.includes(player_sessions: :player).where(player_sessions: {is_in_session: true}).current
     @current_subs = Session.includes(player_sessions: :player).where(player_sessions: {is_sub: true}).current
     
@@ -51,8 +50,16 @@ class PlayersController < ApplicationController
     end
     
     if player.update_attribute :role, new_role
+      flash[:notice] = {
+        class: 'success',
+        body: 'Role has been changed'
+      }
       redirect_to '/players'
     else
+      flash[:notice] = {
+        :class => 'danger',
+        :body => 'Role could not be changed, please try again'
+      }
       render 'index'
     end
   end
@@ -71,8 +78,16 @@ class PlayersController < ApplicationController
     end
     
     if player.update_attribute :role, new_role
+      flash[:notice] = {
+        class: 'success',
+        body: 'Role has been changed'
+      }
       redirect_to '/players'
     else
+      flash[:notice] = {
+        :class => 'danger',
+        :body => 'Role could not be changed, please try again'
+      }
       render 'index'
     end
   end

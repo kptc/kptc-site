@@ -23,7 +23,7 @@
         <tr>
           <td><%= player_session.player.name %></td>
           <td><%= player_session.rank %></td>
-          <td><%= player_session.player.email %></td>
+          <td><%= mail_to player_session.player.email %></td>
           <td><%= player_session.player.phone %></td>
         </tr>
       <% end %>
