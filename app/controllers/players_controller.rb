@@ -3,13 +3,9 @@ class PlayersController < ApplicationController
   before_action :authenticate_player!
   
   def index
-      
-    @current_players = Player.includes(
-      {sessions: [
-        :session_times,
-        :player_sessions
-      ]}
-    ).references(:sessions).merge(Session.current)
+    
+    # does not exclude player_sessions with iis false
+    @current_players = Session.joins(player_sessions: :player).where(player_sessions: {is_in_session: true}).current.group('sessions.id')
     
     @other_players = Player.includes(
       {sessions: [

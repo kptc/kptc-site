@@ -10,7 +10,10 @@ class Session < ActiveRecord::Base
   belongs_to :session_type
   
   default_scope {
-    order(start_date: :desc)
+    order(
+      start_date: :desc,
+      end_date: :desc
+    )
   }
   
   # --- Validations ---
