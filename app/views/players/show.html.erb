@@ -8,7 +8,7 @@
       </div>
     </div>
     
-    <% if @my_open_sub_requests %>
+    <% if @my_open_sub_requests.present? %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4><%= fa_icon 'exclamation-circle' %> My Open Sub Requests</h4>
@@ -19,7 +19,7 @@
               <li class="list-group-item">
                 <%= simple_form_for @player, url: cancel_sub_path(@player, player_session_time.id), html: {method: 'patch'} do |f| %>
                   <%= f.label :sub_requested do %>
-                    <%= f.hidden_field :sub_requested, value: 'cancel' %>
+                    <%= f.hidden_field :sub_requested, value: false %>
                     <%= player_session_time.session_time.start_time.strftime("%a. %b #{player_session_time.session_time.start_time.day.ordinalize} - %I:%M%p") %>
                   <% end %>
                   <%= submit_tag 'Cancel', class: 'btn-primary btn-sm pull-right' %>
@@ -31,7 +31,30 @@
       </div>
     <% end %>
   
-  <% if @upcoming_sessions && @registration_deadline && Time.now < @registration_deadline %>
+    <% if @available_to_sub.present? %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4><%= fa_icon 'info-circle' %> Available Subs</h4>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <% @available_to_sub.each do |player_session_time| %>
+              <li class="list-group-item">
+                <%= simple_form_for @player, url: take_sub_path(@player, player_session_time.id), html: {method: 'patch'} do |f| %>
+                  <%= f.label :sub_requested do %>
+                    <%= f.hidden_field :sub_requested, value: true %>
+                    <%= player_session_time.session_time.start_time.strftime("%a. %b #{player_session_time.session_time.start_time.day.ordinalize} - %I:%M%p") %>
+                  <% end %>
+                  <%= submit_tag 'Sub!', class: 'btn-primary btn-sm pull-right' %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  
+    <% if @upcoming_sessions.present? && @registration_deadline && Time.now < @registration_deadline %>
       <div class="panel panel-default upcoming-sessions">
         <div class="panel-heading">
           <h4><%= fa_icon 'check' %> Choose Your Sessions!</h4>
@@ -69,6 +92,7 @@
         </div>
       </div> <!-- panel -->
     <% end %>
+    
   </aside>
   
   <div class="col-xs-24 col-sm-16">    

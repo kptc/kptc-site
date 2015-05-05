@@ -36,6 +36,24 @@ class PlayerSessionTimesController < ApplicationController
     end
   end
   
+  def take_sub
+    player_session_time = PlayerSessionTime.find(params[:format])
+    
+    if player_session_time.update_attribute :sub_player_id, params[:player_id]
+      flash[:notice] = {
+        class: 'success',
+        body: 'You\'ve signed up as a sub, thanks!'
+      }
+      redirect_to player_path(params[:player_id])
+    else
+      flash[:notice] = {
+        :class => 'danger',
+        :body => 'Could not sub you in, try again'
+      }
+      render player_path(params[:player_id])
+    end
+  end
+  
   def player_session_times_params
     params.require(:player_session_time).permit(
       player_sessions_attributes: [
