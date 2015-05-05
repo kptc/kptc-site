@@ -55,20 +55,20 @@ body {
   }
 }
 
-.navbar {
-  position: relative;
-  overflow: hidden;
-  &:after {
-    content: '';
-    display: block;
-    width: 80px;
-    border-bottom: 15px double $primary-color;
-    position: absolute;
-    right: -17px;
-    top: 27px;
-    transform: rotate(-45deg);
-  }
-}
+// .navbar {
+//   position: relative;
+//   overflow: hidden;
+//   &:after {
+//     content: '';
+//     display: block;
+//     width: 80px;
+//     border-bottom: 15px double $primary-color;
+//     position: absolute;
+//     right: -17px;
+//     top: 27px;
+//     transform: rotate(-45deg);
+//   }
+// }
 .navbar-nav li.active > a {
   border-bottom: 5px solid $primary-color;
 }
@@ -156,12 +156,38 @@ body {
 // Profile styles
 .profile {
   background: #FFF;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.profile-wrap {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 20px;
 }
 
 
-//general styling
-#header {
-  
+//session styles
+.upcoming-sessions {
+  border: none;
+  margin-bottom: 0;
+  .panel-body {
+    padding-bottom: 30px;
+    .session-box {
+      padding-left: 0;
+      label {
+        text-align: center;
+        padding-left: 0;
+        .checker {
+
+        }
+      }
+    }
+  }
+  .upcoming-btn {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 .panel-default .panel-heading {
@@ -173,6 +199,18 @@ body {
   border-radius: 0;
 }
 
+
+//footer stylings
+
+.panel-footer {
+  .pagination .active a {
+    background: $primary-color;
+    color: #FFF;
+  }
+  .pagination li a {
+    color: $primary-color;
+  }
+}
 
 //responsive 
 

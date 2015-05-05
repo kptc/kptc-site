@@ -1,18 +1,14 @@
 <div class="row">
   <aside class="profile col-xs-24 col-sm-6 sidebar">
-    <h1><%= @player.name %></h1>
-    <div>
-      <p><%= @player.email %></p>
-      <p><%= @player.phone %></p>
+    <div class="profile-wrap">
+      <h1><%= @player.name %></h1>
+      <div>
+        <p><%= @player.email %></p>
+        <p><%= @player.phone %></p>
+      </div>
     </div>
-    <address>
-      
-    </address>
-  </aside>
   
-  <div class="col-xs-24 col-sm-18">
-    
-    <% if @upcoming_sessions && @registration_deadline && Time.now < @registration_deadline %>
+  <% if @upcoming_sessions && @registration_deadline && Time.now < @registration_deadline %>
       <div class="panel panel-default upcoming-sessions">
         <div class="panel-heading">
           <h2>Choose Your Sessions!</h2>
@@ -25,18 +21,18 @@
               
               <%= f.fields_for :player_sessions, ps do |ff| %>
                 <div class="row">
-                <div class="col-xs-24 col-sm-12">
+                <div class="col-xs-24 col-sm-12 session-box">
                   <div class="checkbox">
                     <%= ff.label :is_in_session do %>
-                      <%= ff.check_box :is_in_session, class: 'icheck', data: {skin: 'square', color: 'green'} %>
+                      <%= ff.check_box :is_in_session, class: 'icheck checker', data: {skin: 'square', color: 'green'} %>
                       <%= ff.object.session.name %> <%= ff.object.session.id %>
                     <% end %>
                   </div>
                 </div>
-                <div class="col-xs-offset-3 col-xs-18 col-sm-offset-0 col-sm-12">
+                <div class="col-xs-offset-3 col-xs-18 col-sm-offset-0 col-sm-12 session-box">
                   <div class="checkbox">
                     <%= ff.label :is_sub do %>
-                      <%= ff.check_box :is_sub, class: 'icheck', data: {skin: 'square', color: 'green'} %>
+                      <%= ff.check_box :is_sub, class: 'icheck checker', data: {skin: 'square', color: 'green'} %>
                       Sub
                     <% end %>
                   </div>
@@ -45,12 +41,14 @@
               </div>
               <% end %>
             <% end %>
-            <%= submit_tag 'Save', class: 'btn-primary' %>
+            <%= submit_tag 'Save', class: 'btn-primary upcoming-btn' %>
           <% end %>
         </div>
       </div> <!-- panel -->
     <% end %>
-    
+  </aside>
+  
+  <div class="col-xs-24 col-sm-18">    
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2>Current Sessions</h2>
