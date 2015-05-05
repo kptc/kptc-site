@@ -25,10 +25,11 @@ class SessionTime < ActiveRecord::Base
   def as_json(options = {})
     {
       :id => self.id,
+      :player_id => self.player_session_times.first.player_id,
       :start => start_time.rfc822,
       :end => end_time.rfc822,
-      :allDay => 0
-      #:url => Rails.application.routes.url_helpers.request_sub
+      :allDay => 0,
+      :url => "/player_session_times/#{id}/request_sub/#{player_session_times.first.player_id}"
     }
   end
 end

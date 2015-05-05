@@ -28,14 +28,19 @@ class PlayersController < ApplicationController
       @registration_deadline = Session.registration_deadline(@upcoming_sessions)
     end
     
-    @player_sessions = []
+    @my_open_sub_requests = @player.player_session_times.includes(:session_time).open_sub_request
+    @available_to_sub = PlayerSessionTime.all.open_sub_request.where.not(player_id: params[:id])
+    
+    
+    
   end
   
   def calendar
     @player = Player.find(params[:id])
-    @player_session_times = @player.session_times
+    @player_session_times = @player.session_times.includes(:player_session_times).where(player_session_times: {player_id: params[:id]})
     
     render :json => @player_session_times
+    #raise "the dead"
   end
   
   def toggle_activate

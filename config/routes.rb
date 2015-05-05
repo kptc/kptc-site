@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :session_times
   
   patch 'player_sessions/:player_id/select', to: 'player_sessions#select', as: 'player_sessions_select'
+  patch 'player_session_times/:id/request_sub/:player_id', to: 'player_session_times#request_sub'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

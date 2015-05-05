@@ -8,7 +8,11 @@ class PlayerSessionTime < ActiveRecord::Base
       message: 'Must be a number'
     },
     allow_blank: true
-
+  
+  def self.open_sub_request
+    where({sub_requested: true, sub_player_id: nil})
+  end
+  
   def post_params
     params.require(:player_session_time).permit(
       :player_id,

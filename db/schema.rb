@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421031042) do
+ActiveRecord::Schema.define(version: 20150505011920) do
 
   create_table "player_session_times", force: :cascade do |t|
     t.integer  "player_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20150421031042) do
     t.integer  "score"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "sub_requested"
+    t.integer  "sub_player_id"
   end
 
   add_index "player_session_times", ["player_id"], name: "index_player_session_times_on_player_id"
@@ -87,19 +89,5 @@ ActiveRecord::Schema.define(version: 20150421031042) do
     t.string   "gender"
     t.boolean  "allow_both_genders", default: false
   end
-
-  create_table "start_times", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "starts", force: :cascade do |t|
-    t.string   "description"
-    t.integer  "session_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "starts", ["session_id"], name: "index_starts_on_session_id"
 
 end

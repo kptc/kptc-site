@@ -18,11 +18,22 @@ $(document).ready(function() {
     eventSources: [
       {
         url: $("#calendar").data("url"),
-        color: '#337ab7',
+        color: '#488530',
         textColor: 'white'
       }
     ],
-    timeFormat: 'LT'
+    timeFormat: 'LT',
+    eventRender: function(event, element) {
+      element.closest("a").attr({
+        "data-method": "patch",
+        "data-toggle": "tooltip",
+        "data-placement": "top",
+        "data-title": "Request Sub"
+      });
+    },
+    eventAfterRender: function(event, element) {
+      element.closest("a").tooltip();
+    }
   });
   
   $('.best_in_place').best_in_place();

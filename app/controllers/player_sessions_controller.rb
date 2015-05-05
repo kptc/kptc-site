@@ -13,7 +13,17 @@ class PlayerSessionsController < ApplicationController
     end
     
     if player.update_attributes(session_params)
+      flash[:notice] = {
+        :class => 'success',
+        :body => 'Your preferences have been updated'
+      }
       redirect_to player_path(player)
+    else
+      flash[:notice] = {
+        :class => 'danger',
+        :body => 'Your preferences were not updated'
+      }
+      render player_path(player)
     end
     
   end

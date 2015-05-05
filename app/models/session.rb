@@ -66,7 +66,8 @@ class Session < ActiveRecord::Base
   # --- Other Methods ---
 
   def self.registration_deadline(sessions)    
-    sessions.last.start_date - 14
+    sessions.first.start_date - 14
+    #sessions.last.start_date - 14
   end
   
   def self.set_start_date(start_date, day_of_week)
