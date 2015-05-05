@@ -21,7 +21,7 @@
               
               <%= f.fields_for :player_sessions, ps do |ff| %>
                 <div class="row">
-                <div class="col-xs-24 col-sm-12 session-box">
+                <div class="session-box">
                   <div class="checkbox">
                     <%= ff.label :is_in_session do %>
                       <%= ff.check_box :is_in_session, class: 'icheck checker', data: {skin: 'square', color: 'green'} %>
@@ -30,7 +30,7 @@
                     <% end %>
                   </div>
                 </div>
-                <div class="col-xs-offset-3 col-xs-18 col-sm-offset-0 col-sm-12 session-box">
+                <div class=" session-box session-sub">
                   <div class="checkbox">
                     <%= ff.label :is_sub do %>
                       <%= ff.check_box :is_sub, class: 'icheck checker', data: {skin: 'square', color: 'green'} %>

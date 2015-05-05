@@ -22,7 +22,9 @@ body {
 }
 
 #header {
-  
+  .dropdown-toggle .dropdown-menu li.active a {
+    border-bottom: none;
+  }
 }
 
 .navbar-brand {
@@ -71,6 +73,10 @@ body {
 // }
 .navbar-nav li.active > a {
   border-bottom: 5px solid $primary-color;
+}
+
+.navbar-nav .dropdown-menu li.active > a {
+  border-bottom: none;
 }
 
 .navbar-default .navbar-nav > .active  > a {
@@ -175,6 +181,7 @@ body {
     padding-bottom: 30px;
     .session-box {
       padding-left: 0;
+      margin-left: 10px;
       label {
         text-align: center;
         padding-left: 0;
@@ -183,10 +190,15 @@ body {
         }
       }
     }
+    .session-sub {
+      margin-left: 45px;
+    }
   }
   .upcoming-btn {
     display: block;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
+    padding-left: 35px;
+    padding-right: 35px;
   }
 }
 
