@@ -1,0 +1,32 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Rank</th>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% sessions.each do |session| %>
+      
+      <tr>
+        <td colspan="3">
+          <%= session.name %>
+        </td>
+        <td colspan="3">
+          <%= session.dates %>
+        </td>
+      </tr>
+    
+      <% session.player_sessions.each do |player_session| %>
+        <tr>
+          <td><%= player_session.player.name %></td>
+          <td><%= player_session.rank %></td>
+          <td><%= mail_to player_session.player.email %></td>
+          <td><%= player_session.player.phone %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

@@ -57,12 +57,9 @@
         </div>
       </nav>
     </header>
-    
     <% if flash[:notice] %>
-      <div class="alert alert-<%= flash[:notice][:class]
-      %>">
-        <%= flash[:notice][:body] 
-        %>
+      <div class="alert alert-<%= flash[:notice]["class"] %>">
+        <%= flash[:notice]["body"] %>
       </div>
     <% end %>
     <%= content_for?(:public_layout) ? yield(:public_layout) : yield %>

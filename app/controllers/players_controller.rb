@@ -3,20 +3,12 @@ class PlayersController < ApplicationController
   before_action :authenticate_player!
   
   def index
-      
-    @current_players = Player.includes(
-      {sessions: [
-        :session_times,
-        :player_sessions
-      ]}
-    ).references(:sessions).merge(Session.current)
     
-    @other_players = Player.includes(
-      {sessions: [
-        :session_times,
-        :player_sessions # order player_sessions by sessions.start_date DESC (get most recent)
-      ]}
-    ).order("sessions.start_date DESC").where.not(id: @current_players.map(&:id)).page params[:page]
+    @current_players = Session.includes(player_sessions: :player).where(player_sessions: {is_in_session: true}).current
+    @current_subs = Session.includes(player_sessions: :player).where(player_sessions: {is_sub: true}).current
+    
+    @inactive_players = Player.inactive?
+    @all_players = Player.inactive?(false)
     
     @roles = Role.all
     
@@ -58,8 +50,16 @@ class PlayersController < ApplicationController
     end
     
     if player.update_attribute :role, new_role
+      flash[:notice] = {
+        class: 'success',
+        body: 'Role has been changed'
+      }
       redirect_to '/players'
     else
+      flash[:notice] = {
+        :class => 'danger',
+        :body => 'Role could not be changed, please try again'
+      }
       render 'index'
     end
   end
@@ -78,8 +78,16 @@ class PlayersController < ApplicationController
     end
     
     if player.update_attribute :role, new_role
+      flash[:notice] = {
+        class: 'success',
+        body: 'Role has been changed'
+      }
       redirect_to '/players'
     else
+      flash[:notice] = {
+        :class => 'danger',
+        :body => 'Role could not be changed, please try again'
+      }
       render 'index'
     end
   end
