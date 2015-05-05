@@ -94,6 +94,11 @@ body {
   }
 }
 
+//tabs
+.nav-tabs li.active a {
+  background: rgba(118, 195, 0, 0.65)!important;
+}
+
 //Login page
 .log-in #header {
   .navbar-default, 
@@ -157,6 +162,10 @@ body {
   .footer {
     background: rgba(255,255,255,0.56);
   }
+}
+
+body:not(.log-in) {
+  background: url('ps_neutral.png') repeat;
 }
 
 // Profile styles
