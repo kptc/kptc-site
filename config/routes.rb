@@ -18,10 +18,11 @@ Rails.application.routes.draw do
   patch 'sessions/:id/update_session_players', to: 'sessions#update_session_players', as: 'update_session_players'
   
   resources :sessions
-  resources :session_times
-  
   patch 'player_sessions/:player_id/select', to: 'player_sessions#select', as: 'player_sessions_select'
+  
+  resources :session_times
   patch 'player_session_times/:id/request_sub/:player_id', to: 'player_session_times#request_sub'
+  patch 'player_session_times/:player_id/cancel_sub', to: 'player_session_times#cancel_sub', as: 'cancel_sub'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
