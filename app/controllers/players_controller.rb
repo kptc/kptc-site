@@ -40,7 +40,7 @@ class PlayersController < ApplicationController
       params[:id],
       params[:id]
     )
-    render :json => @player_session_times
+    render :json => @player_session_times, my_id: params[:id]
   end
   
   def toggle_activate
