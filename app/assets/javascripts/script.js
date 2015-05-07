@@ -24,12 +24,14 @@ $(document).ready(function() {
     ],
     timeFormat: 'LT',
     eventRender: function(event, element) {
-      element.closest("a").attr({
-        "data-method": "patch",
-        "data-toggle": "tooltip",
-        "data-placement": "top",
-        "data-title": "Request Sub"
-      });
+      if (event.url != "") {
+        element.closest("a").attr({
+          "data-method": "patch",
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          "data-title": "Request Sub"
+        });
+      }
     },
     eventAfterRender: function(event, element) {
       element.closest("a").tooltip();

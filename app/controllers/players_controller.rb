@@ -31,6 +31,8 @@ class PlayersController < ApplicationController
     @my_open_sub_requests = @player.player_session_times.includes(:session_time).open_sub_request
     @available_to_sub = PlayerSessionTime.all.open_sub_request.where.not(player_id: params[:id])
     
+    @games_needing_score = @player.player_session_times.joins(:session_time).where('session_times.start_time < ?', Date.today).where(score: nil).where(sub_player_id: nil)
+    
   end
   
   def calendar

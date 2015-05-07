@@ -15,6 +15,8 @@ class PlayerSessionTime < ActiveRecord::Base
   
   def as_json(options = {})
     
+    url = ""
+    
     if self.sub_requested == true
       if !self.sub_player_id
         colour = '#d9534f'
@@ -25,6 +27,9 @@ class PlayerSessionTime < ActiveRecord::Base
       end
     else
       colour = '#488530'
+      if self.session_time.start_time > Date.tomorrow
+        url = "/player_session_times/#{session_time_id}/request_sub/#{player_id}"
+      end
     end
     
     {
@@ -33,7 +38,7 @@ class PlayerSessionTime < ActiveRecord::Base
       :start => self.session_time.start_time.rfc822,
       :end => self.session_time.end_time.rfc822,
       :allDay => 0,
-      :url => "/player_session_times/#{session_time_id}/request_sub/#{player_id}",
+      :url => url,
       :color => colour
     }
   end
